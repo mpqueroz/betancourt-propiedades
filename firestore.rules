@@ -7,7 +7,7 @@ service cloud.firestore {
     // cuenta usando la clave pública que viene en la página.)
     function esAdmin() {
       return request.auth != null
-          && request.auth.token.email in ['betanclaudia@gmail.com'];
+          && request.auth.token.email in ['mpqueroz@gmail.com'];
     }
 
     function textoOk(v, min, max) {
