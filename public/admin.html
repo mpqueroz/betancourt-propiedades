@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — BETANCOURT Propiedades</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Fraunces:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F3338; --brass:#0F9EAC; --stone:#E6EEEE; --paper:#F7F9F9;
+    --line:rgba(15,51,56,0.14); --text:#1E2B2C; --text-soft:#586566;
+    --danger:#C24444; --ok:#1E8E5A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Public Sans',sans-serif;background:var(--paper);color:var(--text);line-height:1.5;}
+  h1,h2,h3{font-family:'Fraunces',serif;color:var(--ink);}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 16px 80px;}
+  header{background:var(--ink);color:#fff;padding:18px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+  header h1{color:#fff;font-size:1.3rem;}
+  header button{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.85rem;}
+  header button:hover{background:rgba(255,255,255,.1);}
+
+  /* Login */
+  #loginBox{max-width:380px;margin:80px auto;background:#fff;padding:32px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.08);}
+  #loginBox h2{margin-bottom:18px;}
+  #loginBox input{width:100%;padding:12px 14px;margin-bottom:12px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;}
+  #loginBox button{width:100%;padding:12px;background:var(--brass);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.95rem;}
+  #loginBox button:hover{opacity:.9;}
+  #loginError{color:var(--danger);font-size:.85rem;margin-top:8px;min-height:1.2em;}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;margin:24px 0 20px;border-bottom:1px solid var(--line);}
+  .tab-btn{padding:10px 18px;background:none;border:none;cursor:pointer;font-size:.95rem;color:var(--text-soft);border-bottom:2px solid transparent;font-weight:500;}
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--brass);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* Cards / lists */
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px;}
+  .card h3{font-size:1.05rem;margin-bottom:4px;}
+  .card .meta{color:var(--text-soft);font-size:.85rem;margin-bottom:10px;}
+  .card .thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+  .card .thumbs img{width:56px;height:56px;object-fit:cover;border-radius:6px;}
+  .card-actions{display:flex;gap:8px;}
+  .btn{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;}
+  .btn:hover{background:var(--stone);}
+  .btn-primary{background:var(--brass);color:#fff;border-color:var(--brass);}
+  .btn-primary:hover{opacity:.9;}
+  .btn-danger{color:var(--danger);border-color:var(--danger);}
+  .btn-danger:hover{background:#fdecec;}
+
+  /* Form */
+  form.editor{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:24px;}
+  form.editor h3{margin-bottom:14px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr;}}
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--text-soft);margin-bottom:4px;margin-top:10px;}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:.9rem;font-family:inherit;}
+  textarea{min-height:90px;resize:vertical;}
+  .details-row{display:flex;gap:8px;margin-bottom:6px;}
+  .details-row input{flex:1;}
+  .details-row button{padding:0 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;}
+  .file-drop{border:2px dashed var(--line);border-radius:10px;padding:20px;text-align:center;color:var(--text-soft);cursor:pointer;margin-top:6px;}
+  .file-drop:hover{border-color:var(--brass);}
+  .preview-thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+  .preview-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:6px;}
+  .form-actions{margin-top:16px;display:flex;gap:10px;}
+  .status-msg{font-size:.85rem;margin-top:10px;min-height:1.2em;}
+  .status-msg.ok{color:var(--ok);}
+  .status-msg.err{color:var(--danger);}
+  .hidden{display:none !important;}
+  .empty-msg{color:var(--text-soft);font-style:italic;padding:20px 0;text-align:center;}
+  .tab-count{display:inline-block;min-width:20px;padding:1px 7px;margin-left:6px;border-radius:999px;background:var(--brass);color:#fff;font-size:.75rem;font-weight:700;}
+  .tabs{overflow-x:auto;}
+  .tab-btn{white-space:nowrap;}
+  a.btn{text-decoration:none;color:inherit;display:inline-block;}
+</style>
+</head>
+<body>
+
+<div id="loginBox">
+  <h2>Panel de administración</h2>
+  <input type="email" id="loginEmail" placeholder="Correo electrónico" autocomplete="username">
+  <input type="password" id="loginPass" placeholder="Contraseña" autocomplete="current-password">
+  <button id="loginBtn">Entrar</button>
+  <div id="loginError"></div>
+</div>
+
+<div id="adminArea" class="hidden">
+  <header>
+    <h1>BETANCOURT — Panel de administración</h1>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </header>
+
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="props">Propiedades / Avisos</button>
+      <button class="tab-btn" data-tab="blog">Blog</button>
+      <button class="tab-btn" data-tab="messages">Mensajes <span class="tab-count hidden" id="countMessages"></span></button>
+      <button class="tab-btn" data-tab="questions">Preguntas <span class="tab-count hidden" id="countQuestions" title="Preguntas sin publicar"></span></button>
+      <button class="tab-btn" data-tab="settings">Ajustes del sitio</button>
+    </div>
+
+    <!-- ===================== PROPIEDADES ===================== -->
+    <div class="tab-panel active" id="tab-props">
+
+      <form class="editor" id="propForm">
+        <h3 id="propFormTitle">Nueva propiedad</h3>
+        <input type="hidden" id="propId">
+
+        <div class="grid2">
+          <div>
+            <label>Operación</label>
+            <select id="propOperacion">
+              <option value="">(deducir del título o precio)</option>
+              <option value="venta">Venta</option>
+              <option value="arriendo">Arriendo</option>
+            </select>
+          </div>
+          <div></div>
+          <div>
+            <label>Tipo</label>
+            <select id="propType">
+              <option value="casa">Casa</option>
+              <option value="departamento">Departamento</option>
+              <option value="terreno">Terreno</option>
+              <option value="parcela">Parcela</option>
+              <option value="venta">Venta</option>
+              <option value="arriendo">Arriendo</option>
+              <option value="comercial">Comercial</option>
+            </select>
+          </div>
+          <div>
+            <label>Etiqueta (se muestra en la foto, ej: "Casa")</label>
+            <input type="text" id="propLabel" placeholder="Casa">
+          </div>
+        </div>
+
+        <label>Título del aviso</label>
+        <input type="text" id="propTitle" placeholder="Casa en arriendo, calle Seis Oriente">
+
+        <div class="grid2">
+          <div>
+            <label>Ubicación</label>
+            <input type="text" id="propLoc" placeholder="Peñalolén, Región Metropolitana">
+          </div>
+          <div>
+            <label>Precio</label>
+            <input type="text" id="propPrice" placeholder="$1.060.000 / mes (UF 25,94)">
+          </div>
+        </div>
+
+        <label>Características cortas (separadas por " · ")</label>
+        <input type="text" id="propSpecs" placeholder="4 dorm · 2 baños · 90 m² · 1 estac.">
+
+        <label>Detalles (tabla que se ve al abrir la ficha completa)</label>
+        <div id="detailsRows"></div>
+        <button type="button" class="btn" id="addDetailRow">+ Agregar fila de detalle</button>
+
+        <label>Descripción larga</label>
+        <textarea id="propDescription" placeholder="Descripción completa de la propiedad..."></textarea>
+
+        <label>Fotos</label>
+        <div class="file-drop" id="fileDropZone">Haz clic aquí o arrastra fotos (puedes elegir varias a la vez)</div>
+        <input type="file" id="propFiles" accept="image/*" multiple class="hidden">
+        <div class="preview-thumbs" id="previewThumbs"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="propSaveBtn">Guardar propiedad</button>
+          <button type="button" class="btn" id="propCancelBtn">Cancelar / Limpiar</button>
+        </div>
+        <div class="status-msg" id="propStatus"></div>
+      </form>
+
+      <h3 style="margin-bottom:12px;">Propiedades publicadas</h3>
+      <div id="propList"><div class="empty-msg">Cargando…</div></div>
+    </div>
+
+    <!-- ===================== BLOG ===================== -->
+    <div class="tab-panel" id="tab-blog">
+
+      <form class="editor" id="postForm">
+        <h3 id="postFormTitle">Nueva entrada de blog</h3>
+        <input type="hidden" id="postId">
+
+        <label>Título</label>
+        <input type="text" id="postTitle" placeholder="Título de la entrada">
+
+        <label>Contenido</label>
+        <textarea id="postBody" style="min-height:160px;" placeholder="Escribe aquí el contenido..."></textarea>
+
+        <label>Foto de portada (opcional)</label>
+        <div class="file-drop" id="postFileDropZone">Haz clic aquí o arrastra una foto</div>
+        <input type="file" id="postFile" accept="image/*" class="hidden">
+        <div class="preview-thumbs" id="postPreviewThumb"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="postSaveBtn">Publicar</button>
+          <button type="button" class="btn" id="postCancelBtn">Cancelar / Limpiar</button>
+        </div>
+        <div class="status-msg" id="postStatus"></div>
+      </form>
+
+      <h3 style="margin-bottom:12px;">Entradas publicadas</h3>
+      <div id="postList"><div class="empty-msg">Cargando…</div></div>
+    </div>
+
+    <!-- ===================== MENSAJES (formulario de contacto) ===================== -->
+    <div class="tab-panel" id="tab-messages">
+      <h3 style="margin-bottom:12px;">Consultas recibidas desde el sitio</h3>
+      <div id="messagesList"><div class="empty-msg">Cargando…</div></div>
+    </div>
+
+    <!-- ===================== PREGUNTAS (sección pública Q&A) ===================== -->
+    <div class="tab-panel" id="tab-questions">
+      <h3 style="margin-bottom:12px;">Preguntas públicas</h3>
+      <p style="color:var(--text-soft);font-size:.88rem;margin-bottom:16px;">
+        Estas preguntas las escriben los visitantes en la sección "Pregúntale a un asesor" de tu sitio.
+        Al responder, la respuesta aparece públicamente junto a la pregunta.
+      </p>
+      <div id="questionsList"><div class="empty-msg">Cargando…</div></div>
+    </div>
+
+    <!-- ===================== AJUSTES DEL SITIO ===================== -->
+    <div class="tab-panel" id="tab-settings">
+      <form class="editor" id="settingsForm">
+        <h3>Foto principal del sitio (portada)</h3>
+        <p style="color:var(--text-soft);font-size:.88rem;margin-bottom:10px;">
+          Esta es la foto grande que aparece arriba de todo, junto al título principal.
+        </p>
+
+        <div id="currentHeroPreview" style="margin-bottom:14px;"></div>
+
+        <label>Nueva foto (opcional, deja vacío para no cambiarla)</label>
+        <div class="file-drop" id="heroFileDropZone">Haz clic aquí o arrastra una foto</div>
+        <input type="file" id="heroFile" accept="image/*" class="hidden">
+        <div class="preview-thumbs" id="heroPreviewThumb"></div>
+
+        <label>Texto que aparece sobre la foto</label>
+        <input type="text" id="heroCaption" placeholder="Ej: Casa en arriendo · Seis Oriente">
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="settingsSaveBtn">Guardar</button>
+        </div>
+        <div class="status-msg" id="settingsStatus"></div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- Firebase SDK (compat, más simple de usar sin herramientas de compilación) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+
+<script>
+/* =========================================================================
+   1) CONFIGURACIÓN DE FIREBASE
+   Reemplaza estos valores por los de TU proyecto:
+   Firebase Console → ⚙️ Configuración del proyecto → "Tus apps" → SDK setup
+   (Si no tienes una "app web" creada todavía, créala ahí mismo, es gratis
+   y no es lo mismo que Hosting).
+   ========================================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyCiQlUOmzqfY-vY61aEv8HNjU0ETi2Dx0Y",
+  authDomain: "daniel-tapia-abogado.firebaseapp.com",
+  projectId: "daniel-tapia-abogado",
+  storageBucket: "daniel-tapia-abogado.firebasestorage.app",
+  messagingSenderId: "1067127690740",
+  appId: "1:1067127690740:web:7489099722683e5d9a95a1"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// Escapa texto antes de insertarlo como HTML. Los mensajes y preguntas los
+// escriben visitantes del sitio: sin esto, un "nombre" con código HTML se
+// ejecutaría dentro de este panel, con la sesión de administración.
+function esc(v) {
+  return String(v == null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Cada lista se escucha en vivo una sola vez; al cerrar sesión se apagan
+// (antes cada inicio de sesión sumaba otra escucha y las listas se
+// redibujaban dos, tres veces…).
+const escuchas = [];
+function escuchar(unsub) { escuchas.push(unsub); }
+function apagarEscuchas() { while (escuchas.length) { try { escuchas.pop()(); } catch (e) {} } }
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+/* =========================================================================
+   2) LOGIN / SESIÓN
+   ========================================================================= */
+const loginBox = document.getElementById('loginBox');
+const adminArea = document.getElementById('adminArea');
+const loginError = document.getElementById('loginError');
+
+document.getElementById('loginBtn').addEventListener('click', () => {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  loginError.textContent = '';
+  auth.signInWithEmailAndPassword(email, pass).catch(err => {
+    if (err.code === 'auth/unauthorized-domain') {
+      loginError.textContent = 'Este dominio no está autorizado en Firebase Authentication. Ve a Authentication → Configuración → Dominios autorizados y agrega este dominio.';
+    } else if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
+      loginError.textContent = 'Correo o contraseña incorrectos.';
+    } else {
+      loginError.textContent = 'No se pudo iniciar sesión (' + err.code + '): ' + err.message;
+    }
+    console.error(err);
+  });
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => auth.signOut());
+
+auth.onAuthStateChanged(user => {
+  apagarEscuchas();
+  if (user) {
+    loginBox.classList.add('hidden');
+    adminArea.classList.remove('hidden');
+    loadProperties();
+    loadPosts();
+    loadMessages();
+    loadQuestionsAdmin();
+    loadSiteSettings();
+  } else {
+    loginBox.classList.remove('hidden');
+    adminArea.classList.add('hidden');
+  }
+});
+
+// Enter en la contraseña también inicia sesión.
+document.getElementById('loginPass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('loginBtn').click();
+});
+
+/* =========================================================================
+   3) TABS
+   ========================================================================= */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =========================================================================
+   4) PROPIEDADES — estado y helpers de detalles dinámicos
+   ========================================================================= */
+/* =========================================================================
+   COMPRESIÓN DE FOTOS
+   Antes de subir cualquier foto, la redimensionamos (máx 1920px de ancho)
+   y la comprimimos a calidad ~80% JPEG. Esto reduce fotos de 5-8 MB a
+   normalmente 150-400 KB, sin pérdida de calidad visible en pantalla.
+   ========================================================================= */
+function compressImage(file, maxWidth = 1920, quality = 0.8) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = (e) => { img.src = e.target.result; };
+    reader.onerror = reject;
+    img.onload = () => {
+      let { width, height } = img;
+      if (width > maxWidth) {
+        height = Math.round(height * (maxWidth / width));
+        width = maxWidth;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+      canvas.toBlob(blob => {
+        if (!blob) { reject(new Error('No se pudo comprimir la imagen')); return; }
+        const compressedFile = new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' });
+        resolve(compressedFile);
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+let selectedFiles = [];      // File[] nuevos que el usuario acaba de elegir
+let existingImages = [];     // URLs ya guardadas (al editar una propiedad)
+let editingPropId = null;
+
+function addDetailRow(key = '', value = '') {
+  const row = document.createElement('div');
+  row.className = 'details-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Ej: Superficie" class="detail-key" value="${esc(key)}">
+    <input type="text" placeholder="Ej: 90 m²" class="detail-value" value="${esc(value)}">
+    <button type="button" title="Quitar">✕</button>`;
+  row.querySelector('button').addEventListener('click', () => row.remove());
+  document.getElementById('detailsRows').appendChild(row);
+}
+document.getElementById('addDetailRow').addEventListener('click', () => addDetailRow());
+
+function readDetails() {
+  // Firestore no permite arrays anidados (array dentro de array), por eso
+  // guardamos cada detalle como un objeto {key, value} en vez de [key, value].
+  return [...document.querySelectorAll('#detailsRows .details-row')]
+    .map(r => ({
+      key: r.querySelector('.detail-key').value.trim(),
+      value: r.querySelector('.detail-value').value.trim()
+    }))
+    .filter(d => d.key && d.value);
+}
+
+function renderPreviewThumbs() {
+  const box = document.getElementById('previewThumbs');
+  box.innerHTML = '';
+  existingImages.forEach((url, i) => {
+    const wrap = document.createElement('div');
+    wrap.style.position = 'relative';
+    wrap.innerHTML = `<img src="${esc(url)}"><button type="button" data-i="${i}" style="position:absolute;top:-6px;right:-6px;background:#C24444;color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:11px;cursor:pointer;">✕</button>`;
+    wrap.querySelector('button').addEventListener('click', () => { existingImages.splice(i, 1); renderPreviewThumbs(); });
+    box.appendChild(wrap);
+  });
+  selectedFiles.forEach(file => {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    box.appendChild(img);
+  });
+}
+
+const fileDropZone = document.getElementById('fileDropZone');
+const propFiles = document.getElementById('propFiles');
+fileDropZone.addEventListener('click', () => propFiles.click());
+propFiles.addEventListener('change', async () => {
+  const newFiles = [...propFiles.files];
+  propFiles.value = '';
+  const statusEl = document.getElementById('propStatus');
+  statusEl.className = 'status-msg';
+  for (let i = 0; i < newFiles.length; i++) {
+    statusEl.textContent = `Optimizando foto ${i + 1} de ${newFiles.length}…`;
+    try {
+      const compressed = await compressImage(newFiles[i]);
+      selectedFiles.push(compressed);
+    } catch (err) {
+      console.warn('No se pudo comprimir, se sube la foto original:', err.message);
+      selectedFiles.push(newFiles[i]);
+    }
+  }
+  statusEl.textContent = '';
+  renderPreviewThumbs();
+});
+
+function resetPropForm() {
+  editingPropId = null;
+  document.getElementById('propId').value = '';
+  document.getElementById('propFormTitle').textContent = 'Nueva propiedad';
+  document.getElementById('propType').value = 'casa';
+  document.getElementById('propOperacion').value = '';
+  document.getElementById('propLabel').value = '';
+  document.getElementById('propTitle').value = '';
+  document.getElementById('propLoc').value = '';
+  document.getElementById('propPrice').value = '';
+  document.getElementById('propSpecs').value = '';
+  document.getElementById('propDescription').value = '';
+  document.getElementById('detailsRows').innerHTML = '';
+  addDetailRow();
+  selectedFiles = [];
+  existingImages = [];
+  renderPreviewThumbs();
+  document.getElementById('propStatus').textContent = '';
+}
+document.getElementById('propCancelBtn').addEventListener('click', resetPropForm);
+resetPropForm();
+
+/* =========================================================================
+   5) GUARDAR PROPIEDAD (crear o actualizar) + subir fotos a Storage
+   ========================================================================= */
+document.getElementById('propForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const statusEl = document.getElementById('propStatus');
+  const saveBtn = document.getElementById('propSaveBtn');
+  statusEl.className = 'status-msg';
+  statusEl.textContent = 'Guardando…';
+  saveBtn.disabled = true;
+
+  try {
+    const propId = editingPropId || db.collection('properties').doc().id;
+
+    // Subir fotos nuevas a Storage: properties/{propId}/{timestamp}-{nombre}
+    const uploadedUrls = [];
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      statusEl.textContent = `Subiendo foto ${i + 1} de ${selectedFiles.length}…`;
+      const path = `properties/${propId}/${Date.now()}-${file.name}`;
+      const ref = storage.ref(path);
+      await ref.put(file);
+      const url = await ref.getDownloadURL();
+      uploadedUrls.push(url);
+    }
+
+    const images = [...existingImages, ...uploadedUrls];
+    if (images.length === 0) throw new Error('Agrega al menos una foto.');
+
+    const data = {
+      type: document.getElementById('propType').value,
+      operacion: document.getElementById('propOperacion').value,
+      label: document.getElementById('propLabel').value.trim(),
+      title: document.getElementById('propTitle').value.trim(),
+      loc: document.getElementById('propLoc').value.trim(),
+      price: document.getElementById('propPrice').value.trim(),
+      specs: document.getElementById('propSpecs').value.trim(),
+      description: document.getElementById('propDescription').value.trim(),
+      details: readDetails(),
+      images: images,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if (!editingPropId) data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+
+    await db.collection('properties').doc(propId).set(data, { merge: true });
+
+    statusEl.className = 'status-msg ok';
+    statusEl.textContent = '✓ Propiedad guardada correctamente.';
+    resetPropForm();
+    loadProperties();
+  } catch (err) {
+    console.error(err);
+    statusEl.className = 'status-msg err';
+    statusEl.textContent = 'Error al guardar: ' + err.message;
+  } finally {
+    saveBtn.disabled = false;
+  }
+});
+
+/* =========================================================================
+   6) LISTAR / EDITAR / BORRAR PROPIEDADES
+   ========================================================================= */
+function loadProperties() {
+  escuchar(db.collection('properties').orderBy('createdAt', 'desc').onSnapshot(snap => {
+    const list = document.getElementById('propList');
+    if (snap.empty) {
+      list.innerHTML = '<div class="empty-msg">Aún no hay propiedades. Crea la primera arriba.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    snap.forEach(doc => {
+      const p = doc.data();
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${esc(p.title || '(sin título)')}</h3>
+        <div class="meta">${esc(p.loc)} · ${esc(p.price)}${p.operacion ? ' · ' + esc(p.operacion === 'arriendo' ? 'Arriendo' : 'Venta') : ''}</div>
+        <div class="thumbs">${(p.images || []).slice(0, 6).map(u => `<img src="${esc(u)}" loading="lazy">`).join('')}</div>
+        <div class="card-actions">
+          <button class="btn edit-btn">Editar</button>
+          <button class="btn btn-danger del-btn">Borrar</button>
+        </div>`;
+      card.querySelector('.edit-btn').addEventListener('click', () => editProperty(doc.id, p));
+      card.querySelector('.del-btn').addEventListener('click', () => deleteProperty(doc.id, p));
+      list.appendChild(card);
+    });
+  }, err => console.error(err)));
+}
+
+function editProperty(id, p) {
+  editingPropId = id;
+  document.getElementById('propId').value = id;
+  document.getElementById('propFormTitle').textContent = 'Editando: ' + (p.title || '');
+  document.getElementById('propType').value = p.type || 'casa';
+  document.getElementById('propOperacion').value = p.operacion || '';
+  document.getElementById('propLabel').value = p.label || '';
+  document.getElementById('propTitle').value = p.title || '';
+  document.getElementById('propLoc').value = p.loc || '';
+  document.getElementById('propPrice').value = p.price || '';
+  document.getElementById('propSpecs').value = p.specs || '';
+  document.getElementById('propDescription').value = p.description || '';
+  document.getElementById('detailsRows').innerHTML = '';
+  (p.details || []).forEach(d => addDetailRow(d.key || '', d.value || ''));
+  if ((p.details || []).length === 0) addDetailRow();
+  existingImages = [...(p.images || [])];
+  selectedFiles = [];
+  renderPreviewThumbs();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deleteProperty(id, p) {
+  if (!confirm('¿Seguro que quieres borrar "' + (p.title || 'esta propiedad') + '"? Esto no se puede deshacer.')) return;
+  try {
+    // Borrar fotos de Storage
+    for (const url of (p.images || [])) {
+      try {
+        const ref = storage.refFromURL(url);
+        await ref.delete();
+      } catch (e) { console.warn('No se pudo borrar una foto (puede que ya no exista):', e.message); }
+    }
+    await db.collection('properties').doc(id).delete();
+  } catch (err) {
+    alert('Error al borrar: ' + err.message);
+  }
+}
+
+/* =========================================================================
+   7) BLOG — mismo patrón, más simple (una sola foto de portada)
+   ========================================================================= */
+let selectedPostFile = null;
+let existingPostImage = null;
+let editingPostId = null;
+
+const postFileDropZone = document.getElementById('postFileDropZone');
+const postFile = document.getElementById('postFile');
+postFileDropZone.addEventListener('click', () => postFile.click());
+postFile.addEventListener('change', async () => {
+  if (postFile.files[0]) {
+    const statusEl = document.getElementById('postStatus');
+    statusEl.className = 'status-msg';
+    statusEl.textContent = 'Optimizando foto…';
+    try {
+      selectedPostFile = await compressImage(postFile.files[0]);
+    } catch (err) {
+      console.warn('No se pudo comprimir, se sube la foto original:', err.message);
+      selectedPostFile = postFile.files[0];
+    }
+    statusEl.textContent = '';
+    renderPostPreview();
+  }
+});
+
+function renderPostPreview() {
+  const box = document.getElementById('postPreviewThumb');
+  box.innerHTML = '';
+  const url = selectedPostFile ? URL.createObjectURL(selectedPostFile) : existingPostImage;
+  if (url) box.innerHTML = `<img src="${esc(url)}">`;
+}
+
+function resetPostForm() {
+  editingPostId = null;
+  document.getElementById('postId').value = '';
+  document.getElementById('postFormTitle').textContent = 'Nueva entrada de blog';
+  document.getElementById('postTitle').value = '';
+  document.getElementById('postBody').value = '';
+  selectedPostFile = null;
+  existingPostImage = null;
+  renderPostPreview();
+  document.getElementById('postStatus').textContent = '';
+}
+document.getElementById('postCancelBtn').addEventListener('click', resetPostForm);
+resetPostForm();
+
+document.getElementById('postForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const statusEl = document.getElementById('postStatus');
+  const saveBtn = document.getElementById('postSaveBtn');
+  statusEl.className = 'status-msg';
+  statusEl.textContent = 'Publicando…';
+  saveBtn.disabled = true;
+
+  try {
+    const postId = editingPostId || db.collection('posts').doc().id;
+    let imageUrl = existingPostImage;
+
+    if (selectedPostFile) {
+      const path = `blog/${postId}/${Date.now()}-${selectedPostFile.name}`;
+      const ref = storage.ref(path);
+      await ref.put(selectedPostFile);
+      imageUrl = await ref.getDownloadURL();
+    }
+
+    const data = {
+      title: document.getElementById('postTitle').value.trim(),
+      body: document.getElementById('postBody').value.trim(),
+      image: imageUrl || null,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if (!editingPostId) data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+
+    await db.collection('posts').doc(postId).set(data, { merge: true });
+
+    statusEl.className = 'status-msg ok';
+    statusEl.textContent = '✓ Entrada publicada correctamente.';
+    resetPostForm();
+    loadPosts();
+  } catch (err) {
+    console.error(err);
+    statusEl.className = 'status-msg err';
+    statusEl.textContent = 'Error al publicar: ' + err.message;
+  } finally {
+    saveBtn.disabled = false;
+  }
+});
+
+function loadPosts() {
+  escuchar(db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(snap => {
+    const list = document.getElementById('postList');
+    if (snap.empty) {
+      list.innerHTML = '<div class="empty-msg">Aún no hay entradas de blog.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    snap.forEach(doc => {
+      const p = doc.data();
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${esc(p.title || '(sin título)')}</h3>
+        ${p.image ? `<div class="thumbs"><img src="${esc(p.image)}" loading="lazy"></div>` : ''}
+        <div class="card-actions">
+          <button class="btn edit-btn">Editar</button>
+          <button class="btn btn-danger del-btn">Borrar</button>
+        </div>`;
+      card.querySelector('.edit-btn').addEventListener('click', () => editPost(doc.id, p));
+      card.querySelector('.del-btn').addEventListener('click', () => deletePost(doc.id, p));
+      list.appendChild(card);
+    });
+  }, err => console.error(err)));
+}
+
+function editPost(id, p) {
+  editingPostId = id;
+  document.getElementById('postId').value = id;
+  document.getElementById('postFormTitle').textContent = 'Editando: ' + (p.title || '');
+  document.getElementById('postTitle').value = p.title || '';
+  document.getElementById('postBody').value = p.body || '';
+  existingPostImage = p.image || null;
+  selectedPostFile = null;
+  renderPostPreview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deletePost(id, p) {
+  if (!confirm('¿Seguro que quieres borrar "' + (p.title || 'esta entrada') + '"?')) return;
+  try {
+    if (p.image) {
+      try { await storage.refFromURL(p.image).delete(); } catch (e) { console.warn(e.message); }
+    }
+    await db.collection('posts').doc(id).delete();
+  } catch (err) {
+    alert('Error al borrar: ' + err.message);
+  }
+}
+
+/* =========================================================================
+   8) MENSAJES — consultas del formulario de contacto (solo lectura + borrar)
+   ========================================================================= */
+// Si el contacto es un teléfono, se responde por WhatsApp; si es un correo, por mail.
+function enlacesRespuesta(m) {
+  const contacto = String(m.contact || '').trim();
+  const saludo = `Hola ${m.name || ''}, te escribo de Betancourt Propiedades por tu consulta en el sitio.`;
+  if (/@/.test(contacto)) {
+    return `<a class="btn btn-primary" href="mailto:${encodeURIComponent(contacto)}?subject=${encodeURIComponent('Tu consulta en Betancourt Propiedades')}&body=${encodeURIComponent(saludo)}">Responder por correo</a>`;
+  }
+  let digitos = contacto.replace(/\D/g, '');
+  if (digitos.length === 9 && digitos[0] === '9') digitos = '56' + digitos;   // 9 1234 5678 → +56
+  if (digitos.length >= 11) {
+    return `<a class="btn btn-primary" href="https://wa.me/${digitos}?text=${encodeURIComponent(saludo)}" target="_blank" rel="noopener">Responder por WhatsApp</a>`;
+  }
+  return '';
+}
+
+function loadMessages() {
+  escuchar(db.collection('messages').orderBy('createdAt', 'desc').onSnapshot(snap => {
+    const list = document.getElementById('messagesList');
+    const contador = document.getElementById('countMessages');
+    contador.textContent = snap.size;
+    contador.classList.toggle('hidden', snap.empty);
+    if (snap.empty) {
+      list.innerHTML = '<div class="empty-msg">Aún no has recibido consultas.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    snap.forEach(doc => {
+      const m = doc.data();
+      const fecha = m.createdAt && m.createdAt.toDate ? m.createdAt.toDate().toLocaleString('es-CL') : '';
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${esc(m.name || '(sin nombre)')}</h3>
+        <div class="meta">${esc(m.contact)} ${m.comuna ? '· ' + esc(m.comuna) : ''} ${fecha ? '· ' + esc(fecha) : ''}</div>
+        <p style="margin:8px 0;white-space:pre-line;">${esc(m.message)}</p>
+        <div class="card-actions" style="flex-wrap:wrap;">
+          ${enlacesRespuesta(m)}
+          <button class="btn btn-danger del-btn">Borrar</button>
+        </div>`;
+      card.querySelector('.del-btn').addEventListener('click', () => {
+        if (confirm('¿Borrar este mensaje?')) db.collection('messages').doc(doc.id).delete();
+      });
+      list.appendChild(card);
+    });
+  }, err => console.error(err)));
+}
+
+/* =========================================================================
+   9) PREGUNTAS — sección pública "Pregúntale a un asesor"
+   ========================================================================= */
+function loadQuestionsAdmin() {
+  escuchar(db.collection('questions').orderBy('createdAt', 'desc').onSnapshot(snap => {
+    const list = document.getElementById('questionsList');
+    const pendientes = snap.docs.filter(d => !d.data().published).length;
+    const contador = document.getElementById('countQuestions');
+    contador.textContent = pendientes;
+    contador.classList.toggle('hidden', !pendientes);
+    if (snap.empty) {
+      list.innerHTML = '<div class="empty-msg">Aún no hay preguntas publicadas.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    snap.forEach(doc => {
+      const q = doc.data();
+      const fecha = q.createdAt && q.createdAt.toDate ? q.createdAt.toDate().toLocaleString('es-CL') : '';
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${esc(q.question)}</h3>
+        <div class="meta">${esc(fecha)} · ${q.published ? '<span style="color:var(--ok);">Publicada en el sitio</span>' : '<span style="color:var(--danger);">Oculta — pendiente de tu aprobación</span>'}</div>
+        <label>Respuesta ${q.answer ? '(ya respondida, puedes editarla)' : '(opcional)'}</label>
+        <textarea class="answer-input" style="min-height:70px;">${esc(q.answer)}</textarea>
+        <div class="card-actions" style="margin-top:8px;flex-wrap:wrap;">
+          <button class="btn btn-primary save-answer-btn">Guardar respuesta</button>
+          <button class="btn ${q.published ? '' : 'btn-primary'} toggle-publish-btn">${q.published ? 'Ocultar del sitio' : 'Publicar en el sitio'}</button>
+          <button class="btn btn-danger del-btn">Borrar pregunta</button>
+        </div>`;
+      card.querySelector('.toggle-publish-btn').addEventListener('click', () => {
+        db.collection('questions').doc(doc.id).update({ published: !q.published })
+          .catch(err => alert('Error: ' + err.message));
+      });
+      card.querySelector('.save-answer-btn').addEventListener('click', () => {
+        const answer = card.querySelector('.answer-input').value.trim();
+        db.collection('questions').doc(doc.id).update({ answer: answer || null })
+          .then(() => { card.querySelector('label').textContent = answer ? 'Respuesta (ya respondida, puedes editarla)' : 'Respuesta'; })
+          .catch(err => alert('Error al guardar: ' + err.message));
+      });
+      card.querySelector('.del-btn').addEventListener('click', () => {
+        if (confirm('¿Borrar esta pregunta?')) db.collection('questions').doc(doc.id).delete();
+      });
+      list.appendChild(card);
+    });
+  }, err => console.error(err)));
+}
+
+/* =========================================================================
+   10) AJUSTES DEL SITIO — foto principal (hero)
+   ========================================================================= */
+let selectedHeroFile = null;
+
+const heroFileDropZone = document.getElementById('heroFileDropZone');
+const heroFile = document.getElementById('heroFile');
+heroFileDropZone.addEventListener('click', () => heroFile.click());
+heroFile.addEventListener('change', async () => {
+  if (heroFile.files[0]) {
+    const statusEl = document.getElementById('settingsStatus');
+    statusEl.className = 'status-msg';
+    statusEl.textContent = 'Optimizando foto…';
+    try {
+      selectedHeroFile = await compressImage(heroFile.files[0]);
+    } catch (err) {
+      selectedHeroFile = heroFile.files[0];
+    }
+    statusEl.textContent = '';
+    document.getElementById('heroPreviewThumb').innerHTML = `<img src="${URL.createObjectURL(selectedHeroFile)}">`;
+  }
+});
+
+function loadSiteSettings() {
+  db.collection('settings').doc('site').get().then(doc => {
+    const preview = document.getElementById('currentHeroPreview');
+    if (doc.exists) {
+      const data = doc.data();
+      if (data.heroImage) {
+        preview.innerHTML = `<p style="font-size:.85rem;color:var(--text-soft);margin-bottom:6px;">Foto actual:</p><img src="${esc(data.heroImage)}" style="max-width:220px;border-radius:8px;">`;
+      }
+      if (data.heroCaption) document.getElementById('heroCaption').value = data.heroCaption;
+    } else {
+      preview.innerHTML = '<p style="font-size:.85rem;color:var(--text-soft);">Todavía no has configurado una foto personalizada — se está usando la foto por defecto del código.</p>';
+    }
+  });
+}
+
+document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const statusEl = document.getElementById('settingsStatus');
+  const saveBtn = document.getElementById('settingsSaveBtn');
+  statusEl.className = 'status-msg';
+  statusEl.textContent = 'Guardando…';
+  saveBtn.disabled = true;
+  try {
+    const data = {
+      heroCaption: document.getElementById('heroCaption').value.trim(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if (selectedHeroFile) {
+      // Nombre fijo (no timestamp) para que cada foto nueva reemplace a la anterior
+      // y no se acumulen fotos viejas sin usar en Storage.
+      const ref = storage.ref('site/hero.jpg');
+      await ref.put(selectedHeroFile);
+      data.heroImage = await ref.getDownloadURL();
+    }
+    await db.collection('settings').doc('site').set(data, { merge: true });
+    statusEl.className = 'status-msg ok';
+    statusEl.textContent = '✓ Guardado. Los cambios se verán en el sitio al recargar la página.';
+    selectedHeroFile = null;
+    document.getElementById('heroPreviewThumb').innerHTML = '';
+    loadSiteSettings();
+  } catch (err) {
+    statusEl.className = 'status-msg err';
+    statusEl.textContent = 'Error al guardar: ' + err.message;
+  } finally {
+    saveBtn.disabled = false;
+  }
+});
+
+
+</script>
+</body>
+</html>
