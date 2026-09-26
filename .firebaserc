@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "daniel-tapia-abogado",
+    "betancourt": "daniel-tapia-abogado"
+  },
+  "targets": {
+    "daniel-tapia-abogado": {
+      "hosting": {
+        "betancourt": [
+          "betancourt-propiedades"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
