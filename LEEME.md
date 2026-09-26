@@ -1,5 +1,16 @@
 # Betancourt Propiedades — Panel de administración
 
+## Publicación automática (GitHub → Firebase)
+
+- Cada cambio que se acepta en `main` se publica solo en el sitio
+  `betancourt-propiedades` (https://betancourt-propiedades.web.app).
+- Cada PR publica una vista previa temporal y deja el enlace como comentario.
+- La publicación automática sube **solo las páginas** (`public/`). Las reglas
+  (`firestore.rules`, `storage.rules`) se comparten con los otros sitios del
+  proyecto y se publican a mano desde la consola de Firebase.
+- Los avisos, artículos y fotos que se suben desde el panel viven en
+  Firestore/Storage: publicar la página no los borra.
+
 ## Qué hay en esta carpeta
 
 - `public/index.html` — tu sitio público, ya liviano (52 KB) y conectado a Firestore.

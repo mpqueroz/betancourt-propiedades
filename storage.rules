@@ -2,29 +2,39 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
 
-    // Fotos de propiedades: lectura pública (para que se vean en el sitio),
-    // solo tú (logeado) puedes subir o borrar.
+    // Mismas cuentas de administración que en Firestore.
+    function esAdmin() {
+      return request.auth != null
+          && request.auth.token.email in ['betanclaudia@gmail.com'];
+    }
+
+    // Subir o reemplazar: solo imágenes de hasta 10 MB.
+    function imagenOk() {
+      return request.resource.size < 10 * 1024 * 1024
+          && request.resource.contentType.matches('image/.*');
+    }
+
+    // Fotos de propiedades: lectura pública (para que se vean en el sitio).
+    // Borrar va aparte: al borrar no hay "archivo nuevo" que revisar, y la
+    // regla anterior hacía fallar el borrado de fotos desde el panel.
     match /properties/{propertyId}/{fileName} {
       allow read: if true;
-      allow write: if request.auth != null
-                   && request.resource.size < 10 * 1024 * 1024 // máx 10MB por foto
-                   && request.resource.contentType.matches('image/.*');
+      allow create, update: if esAdmin() && imagenOk();
+      allow delete: if esAdmin();
     }
 
     // Imágenes del blog: mismo criterio.
     match /blog/{postId}/{fileName} {
       allow read: if true;
-      allow write: if request.auth != null
-                   && request.resource.size < 10 * 1024 * 1024
-                   && request.resource.contentType.matches('image/.*');
+      allow create, update: if esAdmin() && imagenOk();
+      allow delete: if esAdmin();
     }
 
     // Fotos de ajustes del sitio (ej: foto principal / hero).
     match /site/{fileName} {
       allow read: if true;
-      allow write: if request.auth != null
-                   && request.resource.size < 10 * 1024 * 1024
-                   && request.resource.contentType.matches('image/.*');
+      allow create, update: if esAdmin() && imagenOk();
+      allow delete: if esAdmin();
     }
 
     // Todo lo demás queda bloqueado.

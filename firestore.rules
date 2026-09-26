@@ -2,38 +2,61 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Quién administra el sitio. Solo estas cuentas pueden editar.
+    // (Antes bastaba con "tener sesión", y cualquiera puede crearse una
+    // cuenta usando la clave pública que viene en la página.)
+    function esAdmin() {
+      return request.auth != null
+          && request.auth.token.email in ['betanclaudia@gmail.com'];
+    }
+
+    function textoOk(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+
+    // Propiedades y blog: todos leen, solo administración edita.
     match /properties/{propertyId} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if esAdmin();
     }
-
     match /posts/{postId} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if esAdmin();
     }
 
-    // Mensajes del formulario de contacto: cualquier visitante puede ENVIAR
-    // uno (no está logeado), pero solo tú puedes leerlos o borrarlos.
-    match /messages/{messageId} {
-      allow create: if true;
-      allow read, update, delete: if request.auth != null;
-    }
-
-    // Preguntas públicas: cualquiera puede publicar (queda oculta hasta que
-    // tú la apruebes), cualquiera puede leer las ya aprobadas,
-    // solo tú puedes aprobar/responder/editar/borrar.
-    match /questions/{questionId} {
+    // Ajustes del sitio (foto y texto de la portada).
+    match /settings/{docId} {
       allow read: if true;
-      allow create: if request.resource.data.published == false;
-      allow update, delete: if request.auth != null;
+      allow write: if esAdmin();
     }
 
-    // Ajustes del sitio (ej: foto principal): lectura pública, solo tú editas.
-    match /settings/{settingId} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    // Formulario de contacto: cualquiera puede ENVIAR un mensaje con el
+    // formato del sitio; solo administración lo lee o lo borra.
+    match /messages/{msgId} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'contact', 'comuna', 'message', 'createdAt'])
+                    && request.resource.data.keys().hasAll(['name', 'contact', 'message', 'createdAt'])
+                    && textoOk(request.resource.data.name, 1, 100)
+                    && textoOk(request.resource.data.contact, 1, 100)
+                    && textoOk(request.resource.data.get('comuna', ''), 0, 80)
+                    && textoOk(request.resource.data.message, 1, 2000)
+                    && request.resource.data.createdAt == request.time;
+      allow read, delete: if esAdmin();
+      allow update: if false;
     }
 
+    // Preguntas frecuentes: cualquiera puede preguntar (queda sin publicar);
+    // el público solo ve las publicadas; administración responde y publica.
+    match /questions/{qId} {
+      allow create: if request.resource.data.keys().hasOnly(['question', 'answer', 'published', 'createdAt'])
+                    && textoOk(request.resource.data.question, 1, 300)
+                    && request.resource.data.answer == null
+                    && request.resource.data.published == false
+                    && request.resource.data.createdAt == request.time;
+      allow read: if resource.data.published == true || esAdmin();
+      allow update, delete: if esAdmin();
+    }
+
+    // Todo lo demás queda bloqueado.
     match /{document=**} {
       allow read, write: if false;
     }
