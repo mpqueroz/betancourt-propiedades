@@ -2,523 +2,473 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BETANCOURT Propiedades — Corredora de Propiedades</title>
 <meta name="description" content="Claudia Betancourt, corredora de propiedades con 15 años de experiencia: venta, arriendo, tasación y asesoría inmobiliaria en la Región Metropolitana.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BETANCOURT Propiedades — Corredora de Propiedades">
 <meta property="og:description" content="Casas, parcelas, terrenos y arriendos en la Región Metropolitana, con asesoría personalizada de principio a fin.">
-<meta name="theme-color" content="#0F3338">
+<meta name="theme-color" content="#082024">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#0F3338;
-    --ink-soft:#164046;
-    --brass:#0F9EAC;
-    --brass-light:#5DCBD3;
-    --clay:#B8935A;
-    --stone:#E6EEEE;
-    --paper:#F7F9F9;
-    --line:rgba(15,51,56,0.14);
-    --text:#1E2B2C;
-    --text-soft:#586566;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--text);
-    font-family:'Public Sans',sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--brass);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{content:'';width:22px;height:1px;background:var(--brass);display:inline-block;}
-  ::selection{background:var(--brass-light);color:var(--ink);}
+:root{
+  --plan:#082024;
+  --ink:#0B2A2E;
+  --ink-2:#123B40;
+  --teal:#0F9EAC;
+  --teal-2:#5DCBD3;
+  --teal-deep:#0A7580;
+  --sand:#C9A46A;
+  --paper:#F4F2EC;
+  --paper-2:#EAE6DC;
+  --surface:#FFFFFF;
+  --text:#18252A;
+  --muted:#5A676B;
+  --line:rgba(11,42,46,.13);
+  --on-dark:#E6F0EF;
+  --on-dark-muted:#93AFB1;
+  --line-dark:rgba(93,203,211,.2);
+  --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--teal-2);outline-offset:3px;border-radius:6px}
+::selection{background:var(--teal-2);color:var(--ink)}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:24px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.05;text-wrap:balance}
+h2{font-size:clamp(36px,5vw,60px);color:var(--ink)}
+h2 em,h1 em{font-style:italic;color:var(--teal-deep)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-deep);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}
+.lead{color:var(--muted);font-size:17px;max-width:56ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--teal-deep);color:#fff}
+.btn-primary:hover{background:var(--ink)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink)}
+.on-dark .btn-primary{background:var(--teal-2);color:var(--plan)}
+.on-dark .btn-primary:hover{background:#fff}
+.on-dark .btn-ghost{border-color:var(--line-dark);color:var(--on-dark)}
+.on-dark .btn-ghost:hover{border-color:var(--teal-2)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
 
-  /* Topographic contour signature motif */
-  .contour-bg{
-    position:absolute;inset:0;
-    background-image:
-      repeating-radial-gradient(circle at 82% 20%, transparent 0, transparent 38px, rgba(27,43,34,0.055) 39px, rgba(27,43,34,0.055) 40px, transparent 41px),
-      repeating-radial-gradient(circle at 82% 20%, transparent 0, transparent 78px, rgba(169,131,79,0.10) 79px, rgba(169,131,79,0.10) 80px, transparent 81px);
-    pointer-events:none;
-  }
-  .contour-divider{
-    height:56px;width:100%;
-    background-repeat:no-repeat;
-    background-position:center;
-    opacity:0.5;
-  }
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--plan) 86%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dark);color:var(--on-dark)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:38px;height:38px;object-fit:contain;border-radius:8px;background:#fff;padding:3px}
+.brand b{display:block;font-family:var(--sans);font-weight:800;letter-spacing:.14em;font-size:15px;line-height:1.1}
+.brand small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--teal-2)}
+.nav-links{display:flex;gap:26px;font-size:14px;font-weight:600}
+.nav-links a{color:var(--on-dark-muted);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--teal-2);color:var(--plan);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px}
+.nav-cta svg{width:16px;height:16px}
+.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line-dark);border-radius:10px;background:transparent;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menu-toggle span{width:18px;height:2px;background:var(--on-dark);border-radius:2px;transition:transform .25s,opacity .25s}
+.nav.open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .menu-toggle span:nth-child(2){opacity:0}
+.nav.open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:920px){
+  .menu-toggle{display:flex}
+  .nav-cta{display:none}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--plan);border-bottom:1px solid var(--line-dark);padding:8px 24px 18px;display:none}
+  .nav-links a{padding:13px 0;border-bottom:1px solid var(--line-dark);font-size:16px}
+  .nav.open .nav-links{display:flex}
+}
 
-  /* Header */
-  header{
-    position:sticky;top:0;z-index:100;
-    background:rgba(248,246,241,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px 32px;max-width:1180px;margin:0 auto;
-  }
-  .logo{
-    font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);
-    display:flex;align-items:center;gap:10px;letter-spacing:0.01em;
-  }
-  .logo-mark{
-    width:34px;height:34px;flex-shrink:0;border-radius:50%;object-fit:cover;
-  }
-  .nav-links{display:flex;gap:36px;align-items:center;}
-  .nav-links a{
-    font-size:14px;font-weight:500;color:var(--ink-soft);
-    position:relative;padding-bottom:4px;
-  }
-  .nav-links a::after{
-    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--brass);
-    transition:width .25s ease;
-  }
-  .nav-links a:hover::after{width:100%;}
-  .btn{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;letter-spacing:0.04em;
-    padding:12px 22px;border-radius:2px;
-    display:inline-block;cursor:pointer;border:1px solid transparent;
-    transition:all .25s ease;
-  }
-  .btn-primary{background:var(--ink);color:var(--paper);}
-  .btn-primary:hover{background:var(--brass);color:var(--ink);}
-  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent;}
-  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
-  .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
-  .menu-toggle span{width:24px;height:2px;background:var(--ink);}
+/* ---------- HERO: plano de loteo en vivo ---------- */
+.hero{position:relative;background:var(--plan);color:var(--on-dark);overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,32,36,.94) 0%,rgba(8,32,36,.78) 38%,rgba(8,32,36,.15) 70%,rgba(8,32,36,.35) 100%),linear-gradient(0deg,rgba(8,32,36,.9) 0%,transparent 30%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;min-height:min(calc(100svh - 68px),860px);padding-block:56px 88px}
+.hero .eyebrow{color:var(--teal-2)}
+.hero h1{font-size:clamp(42px,5.4vw,78px);color:#fff;margin:20px 0 18px}
+.hero h1 em{color:var(--teal-2)}
+.hero-lead{color:var(--on-dark-muted);font-size:18px;max-width:50ch}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.buscador{margin-top:34px;display:grid;grid-template-columns:1fr 1fr 1.3fr auto;background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:18px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);max-width:680px;overflow:hidden}
+.buscador label{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-right:1px solid var(--line-dark);min-width:0}
+.buscador label span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-2)}
+.buscador select,.buscador input{background:transparent;border:0;outline:0;color:#fff;font-weight:600;font-size:15px;width:100%;padding:2px 0;-webkit-appearance:none;appearance:none}
+.buscador select option{color:var(--ink)}
+.buscador input::placeholder{color:var(--on-dark-muted);font-weight:500}
+.buscador button{margin:8px;border:0;border-radius:12px;background:var(--teal-2);color:var(--plan);font-weight:800;padding:0 22px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s}
+.buscador button:hover{background:#fff}
+.buscador button svg{width:18px;height:18px}
+.lote{position:relative;justify-self:end;width:min(100%,360px);padding:10px;background:rgba(8,32,36,.72);border:1px solid var(--line-dark);border-radius:20px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.lote img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
+.lote figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 6px 4px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-muted)}
+.lote figcaption b{color:var(--teal-2);font-weight:500}
+.lote .esquina{position:absolute;width:18px;height:18px;border-color:var(--teal-2);border-style:solid;border-width:0}
+.lote .e1{top:-6px;left:-6px;border-top-width:2px;border-left-width:2px}
+.lote .e2{top:-6px;right:-6px;border-top-width:2px;border-right-width:2px}
+.lote .e3{bottom:-6px;left:-6px;border-bottom-width:2px;border-left-width:2px}
+.lote .e4{bottom:-6px;right:-6px;border-bottom-width:2px;border-right-width:2px}
+.hud{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--on-dark-muted);text-transform:uppercase;pointer-events:none}
+.hud-coord{top:22px;right:24px;text-align:right}
+.hud-coord i{font-style:normal;color:var(--teal-2)}
+.hud-escala{bottom:24px;left:24px;display:flex;align-items:center;gap:10px}
+.hud-escala span{display:block;width:90px;height:8px;border:1px solid var(--on-dark-muted);border-top:0;background:linear-gradient(90deg,var(--on-dark-muted) 50%,transparent 50%) bottom/100% 3px no-repeat}
+.hud-norte{bottom:18px;right:24px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.hud-norte svg{width:26px;height:26px}
+.pins{position:absolute;inset:0;pointer-events:none}
+.pin{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;transform:translate(-9px,-9px);opacity:0;animation:aparecer .6s ease forwards}
+.pin-dot{position:relative;width:18px;height:18px;border-radius:50%;background:var(--teal-2);box-shadow:0 0 0 4px rgba(93,203,211,.25);flex:none}
+.pin-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--teal-2);animation:onda 2.4s ease-out infinite}
+.pin-tag{display:flex;flex-direction:column;align-items:flex-start;background:rgba(8,32,36,.9);border:1px solid var(--line-dark);border-radius:10px;padding:7px 11px;text-align:left;transition:border-color .2s,transform .2s;white-space:nowrap}
+.pin-tag b{font-size:13px;color:#fff;font-weight:700}
+.pin-tag small{font-family:var(--mono);font-size:11px;color:var(--teal-2)}
+.pin:hover .pin-tag{border-color:var(--teal-2);transform:translateX(3px)}
+.pin.izq{flex-direction:row-reverse;transform:translate(calc(-100% + 9px),-9px)}
+@keyframes onda{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@keyframes aparecer{to{opacity:1}}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;padding-block:48px 80px;min-height:0}
+  .lote{justify-self:start;width:min(100%,420px)}
+  .lote img{aspect-ratio:4/3}
+  .hero::after{background:linear-gradient(180deg,rgba(8,32,36,.9) 0%,rgba(8,32,36,.72) 60%,rgba(8,32,36,.92) 100%)}
+  .pins{display:none}
+  .hud-coord{display:none}
+}
+@media (max-width:640px){
+  .buscador{grid-template-columns:1fr 1fr}
+  .buscador label:nth-child(2){border-right:0}
+  .buscador label:nth-child(3){grid-column:1/-1;border-right:0;border-top:1px solid var(--line-dark)}
+  .buscador button{grid-column:1/-1;justify-content:center;padding:14px}
+  .hero-ctas .btn{flex:1}
+}
+@media (prefers-reduced-motion:reduce){.pin-dot::after{animation:none}.pin{animation:none;opacity:1}}
 
-  /* Hero */
-  .hero{
-    position:relative;
-    padding:100px 0 80px;
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;
-    position:relative;z-index:2;
-  }
-  .hero h1{
-    font-size:clamp(38px,5vw,60px);
-    line-height:1.05;
-    margin:18px 0 24px;
-  }
-  .hero h1 em{font-style:italic;color:var(--brass);}
-  .hero p{font-size:17px;color:var(--text-soft);max-width:460px;margin-bottom:34px;}
-  .hero-ctas{display:flex;gap:14px;margin-bottom:46px;}
-  .hero-panel{
-    position:relative;
-    background:var(--ink);
-    border-radius:2px;
-    aspect-ratio:4/5;
-    overflow:hidden;
-  }
-  .hero-panel img{width:100%;height:100%;object-fit:cover;opacity:0.88;}
-  .hero-panel .tag{
-    position:absolute;bottom:18px;left:18px;right:18px;
-    background:rgba(248,246,241,0.94);
-    padding:14px 16px;border-radius:2px;
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);
-    display:flex;justify-content:space-between;
-  }
-  .search-bar{
-    display:flex;gap:0;background:var(--paper);border:1px solid var(--ink);
-    max-width:640px;overflow:hidden;border-radius:2px;
-  }
-  .search-bar select,.search-bar input{
-    border:none;background:transparent;padding:14px 16px;font-family:'Public Sans',sans-serif;
-    font-size:14px;color:var(--text);border-right:1px solid var(--line);flex:1;
-  }
-  .search-bar button{
-    background:var(--brass);border:none;color:var(--ink);padding:14px 24px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.04em;cursor:pointer;
-  }
-  .search-bar button:hover{background:var(--ink);color:var(--paper);}
+/* ---------- Franja de comunas ---------- */
+.franja{background:var(--teal-deep);color:#fff;overflow:hidden;border-block:1px solid rgba(255,255,255,.15)}
+.franja-track{display:flex;width:max-content;animation:correr 40s linear infinite}
+.franja-track span{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:14px 22px;display:flex;align-items:center;gap:22px;white-space:nowrap}
+.franja-track span::after{content:"◆";font-size:8px;opacity:.6}
+@keyframes correr{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.franja-track{animation:none}}
 
-  /* About */
-  .about-grid{display:grid;grid-template-columns:200px 1fr;gap:56px;align-items:center;}
-  .about-portrait{
-    width:200px;height:200px;border-radius:50%;
-    background:var(--ink);display:flex;align-items:center;justify-content:center;
-    padding:24px;flex-shrink:0;
-  }
-  .about-portrait svg{width:100%;height:100%;}
-  .about-lead{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);font-style:italic;margin-bottom:18px !important;}
-  #quien-es p{color:var(--text-soft);font-size:15px;margin-bottom:14px;max-width:600px;}
-  @media (max-width:640px){
-    .about-grid{grid-template-columns:1fr;text-align:left;justify-items:start;}
-    .about-portrait{width:140px;height:140px;}
-  }
+/* ---------- Secciones ---------- */
+.section{padding-block:clamp(72px,10vw,120px)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:44px;flex-wrap:wrap}
+.section-head h2{margin-top:14px}
+.section-head .lead{max-width:44ch}
 
-  /* Stats */
-  .stats-section{
-    background:var(--ink);color:var(--paper);padding:64px 0;position:relative;
-  }
-  .stats-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2;
-  }
-  .stat-num{font-family:'Fraunces',serif;font-size:44px;color:var(--brass-light);font-weight:500;}
-  .stat-label{font-size:13px;color:rgba(248,246,241,0.7);margin-top:6px;letter-spacing:0.01em;}
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:40px 24px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat-num{font-family:var(--serif);font-size:clamp(48px,6vw,72px);line-height:1;color:var(--ink)}
+.stat-num sup{font-size:.45em;color:var(--teal-deep);vertical-align:top;margin-left:2px}
+.stat-label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px;max-width:22ch}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.stat{padding:28px 16px}}
 
-  /* Section heading */
-  .section{padding:96px 0;}
-  .section-head{
-    display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:24px;flex-wrap:wrap;
-  }
-  .section-head h2{font-size:clamp(28px,3.4vw,40px);}
-  .section-head p{color:var(--text-soft);max-width:420px;font-size:15px;}
+/* Nosotros */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.retrato{position:relative;aspect-ratio:1;border-radius:28px;background:var(--ink);overflow:hidden;display:grid;place-items:center;color:var(--teal-2)}
+.retrato svg.curvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.monograma{position:relative;font-family:var(--serif);font-size:clamp(110px,16vw,190px);line-height:1;color:#fff}
+.monograma em{color:var(--teal-2)}
+.credencial{position:absolute;left:20px;right:20px;bottom:20px;display:flex;flex-wrap:wrap;gap:8px}
+.credencial span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-dark);background:rgba(8,32,36,.6);color:var(--on-dark);padding:6px 10px;border-radius:999px}
+.about h2{margin:14px 0 20px}
+.about-lead{font-size:20px;color:var(--ink);font-weight:600;margin-bottom:16px}
+.about p+p{margin-top:14px}
+.about p{color:var(--muted)}
+.firma{margin-top:26px;font-family:var(--serif);font-style:italic;font-size:30px;color:var(--teal-deep)}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:36px}.retrato{max-width:420px}}
 
-  /* Filters */
-  .filters{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap;}
-  .filter-btn{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.03em;
-    padding:10px 18px;border:1px solid var(--line);border-radius:2px;cursor:pointer;
-    background:transparent;color:var(--text-soft);transition:all .2s ease;
-  }
-  .filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+/* Propiedades */
+#propiedades{background:var(--surface);border-block:1px solid var(--line)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filter-btn{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.filter-btn i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.filter-btn:hover{border-color:var(--ink)}
+.filter-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.filter-btn.active i{color:var(--teal-2)}
+.results-note{font-size:14px;color:var(--muted);min-height:22px;margin-bottom:14px}
+.results-note a{color:var(--teal-deep);font-weight:700;text-decoration:underline}
+.prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:26px}
+@media (max-width:420px){.prop-grid{grid-template-columns:1fr}}
+.prop-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease,box-shadow .3s,border-color .3s}
+.prop-card.visible{opacity:1;transform:none}
+.prop-card:hover{box-shadow:0 30px 60px -30px rgba(11,42,46,.35);border-color:rgba(11,42,46,.25)}
+.prop-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2);cursor:pointer;touch-action:pan-y}
+.prop-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease,transform 1.2s ease}
+.prop-slide.active{opacity:1}
+.prop-card:hover .prop-slide.active{transform:scale(1.04)}
+.chips{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:2}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);font-weight:500}
+.chip.op{background:var(--ink);color:var(--teal-2)}
+.fotos{position:absolute;right:14px;top:14px;z-index:2;font-family:var(--mono);font-size:11px;color:#fff;background:rgba(8,32,36,.6);padding:5px 9px;border-radius:999px;display:flex;align-items:center;gap:5px}
+.fotos svg{width:13px;height:13px}
+.prop-arrow{position:absolute;top:50%;z-index:3;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;opacity:0;transition:opacity .25s;display:grid;place-items:center}
+.prop-prev{left:12px}.prop-next{right:12px}
+.prop-card:hover .prop-arrow{opacity:1}
+@media (hover:none){.prop-arrow{opacity:1;width:34px;height:34px;background:rgba(255,255,255,.8)}}
+.prop-dots{position:absolute;bottom:12px;left:0;right:0;z-index:2;display:flex;justify-content:center;gap:5px}
+.prop-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);transition:all .25s}
+.prop-dot.active{background:#fff;width:18px;border-radius:4px}
+.prop-body{padding:22px 22px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prop-price{font-family:var(--serif);font-size:30px;line-height:1.1;color:var(--ink)}
+.prop-title{font-weight:700;font-size:17px;line-height:1.35;color:var(--text)}
+.prop-loc{display:flex;gap:6px;align-items:flex-start;color:var(--muted);font-size:14px}
+.prop-loc svg{width:15px;height:15px;flex:none;margin-top:3px;color:var(--teal-deep)}
+.prop-specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.prop-specs span{font-family:var(--mono);font-size:11.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:4px 9px;border-radius:8px}
+.prop-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);margin-top:18px}
+.prop-more{font-weight:700;font-size:14px;color:var(--teal-deep);background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0}
+.prop-more svg{width:16px;height:16px;transition:transform .2s}
+.prop-card:hover .prop-more svg{transform:translateX(4px)}
+.prop-wsp{font-size:13px;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.prop-wsp:hover{color:var(--teal-deep)}
+.prop-wsp svg{width:16px;height:16px}
+.empty-grid{grid-column:1/-1;text-align:center;padding:56px 20px;border:1px dashed var(--line);border-radius:22px;color:var(--muted)}
+.empty-grid a{color:var(--teal-deep);font-weight:700}
 
-  /* Property grid */
-  .prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .prop-card{
-    background:var(--stone);border-radius:2px;overflow:hidden;
-    transition:transform .3s ease, box-shadow .3s ease;
-    opacity:0;transform:translateY(24px);
-  }
-  .prop-card.visible{opacity:1;transform:translateY(0);}
-  .prop-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(27,43,34,0.35);}
-  .prop-img{position:relative;aspect-ratio:4/3;overflow:hidden;}
-  .prop-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-  .prop-card:hover .prop-img img.prop-slide.active{transform:scale(1.06);}
-  .prop-slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease;z-index:0;}
-  .prop-slide.active{opacity:1;z-index:1;}
-  .prop-arrow{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
-    width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;
-    background:rgba(15,51,56,0.55);color:#fff;font-size:16px;line-height:1;
-    display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s ease,background .2s ease;
-  }
-  .prop-arrow:hover{background:var(--ink);}
-  .prop-img:hover .prop-arrow{opacity:1;}
-  .prop-arrow.prop-prev{left:10px;}
-  .prop-arrow.prop-next{right:10px;}
-  .prop-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:5px;}
-  .prop-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.55);}
-  .prop-dot.active{background:#fff;}
-  .prop-badge{
-    position:absolute;top:14px;left:14px;z-index:3;
-    background:var(--paper);color:var(--ink);
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.03em;
-    padding:6px 12px;border-radius:2px;text-transform:uppercase;
-  }
-  .prop-coord{
-    position:absolute;bottom:14px;right:14px;color:#fff;z-index:3;
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;
-    background:rgba(27,43,34,0.55);padding:5px 9px;border-radius:2px;letter-spacing:0.02em;
-  }
-  .prop-body{padding:22px;}
-  .prop-price{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);margin-bottom:4px;}
-  .prop-title{font-size:14.5px;font-weight:600;margin-bottom:6px;color:var(--text);}
-  .prop-loc{font-size:13px;color:var(--text-soft);margin-bottom:14px;}
-  .prop-specs{
-    display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;
-    color:var(--text-soft);border-top:1px solid var(--line);padding-top:14px;
-  }
-  .prop-more{
-    display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;
-    letter-spacing:0.03em;color:var(--brass);cursor:pointer;text-transform:uppercase;border-bottom:1px solid transparent;
-  }
-  .prop-more:hover{border-bottom-color:var(--brass);}
+/* Servicios */
+.servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface)}
+.serv{padding:36px 30px 34px;border-right:1px solid var(--line);position:relative;transition:background .3s}
+.serv:last-child{border-right:0}
+.serv:hover{background:var(--paper)}
+.serv-num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--teal-deep)}
+.serv svg{width:40px;height:40px;color:var(--ink);margin:26px 0 20px}
+.serv h3{font-size:30px;color:var(--ink);margin-bottom:10px}
+.serv p{color:var(--muted);font-size:15px}
+@media (max-width:860px){.servicios{grid-template-columns:1fr}.serv{border-right:0;border-bottom:1px solid var(--line)}.serv:last-child{border-bottom:0}}
 
-  /* Property detail modal */
-  .modal-overlay{
-    position:fixed;inset:0;background:rgba(15,51,56,0.72);z-index:200;
-    display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;
-  }
-  .modal-overlay.open{display:flex;}
-  .modal-box{
-    background:var(--paper);max-width:760px;width:100%;border-radius:2px;overflow:hidden;position:relative;
-  }
-  .modal-close{
-    position:absolute;top:16px;right:16px;z-index:5;width:34px;height:34px;border-radius:50%;
-    background:rgba(15,51,56,0.7);color:#fff;border:none;cursor:pointer;font-size:18px;line-height:1;
-  }
-  .modal-gallery{position:relative;aspect-ratio:16/10;background:var(--ink);}
-  .modal-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease;}
-  .modal-gallery img.active{opacity:1;}
-  .modal-arrow{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:34px;height:34px;border-radius:50%;
-    border:none;background:rgba(15,51,56,0.6);color:#fff;font-size:20px;cursor:pointer;
-  }
-  .modal-arrow.m-prev{left:14px;} .modal-arrow.m-next{right:14px;}
-  .modal-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:6px;}
-  .modal-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);}
-  .modal-dot.active{background:#fff;}
-  .modal-content{padding:30px 34px 34px;}
-  .modal-price{font-family:'Fraunces',serif;font-size:26px;color:var(--ink);}
-  .modal-title{font-size:16px;font-weight:600;margin:4px 0 2px;}
-  .modal-loc{font-size:13.5px;color:var(--text-soft);margin-bottom:20px;}
-  .modal-table{width:100%;border-collapse:collapse;margin-bottom:22px;}
-  .modal-table td{
-    font-size:13px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--text-soft);
-  }
-  .modal-table td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--brass);width:45%;}
-  .modal-desc{font-size:14.5px;line-height:1.7;color:var(--text);white-space:pre-line;}
-  .modal-desc-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--brass);letter-spacing:0.04em;display:block;margin-bottom:8px;}
+/* Testimonios */
+.testi-section{background:var(--ink);color:var(--on-dark);position:relative;overflow:hidden}
+.testi-section h2{color:#fff}
+.testi-section h2 em{color:var(--teal-2)}
+.testi-section .eyebrow{color:var(--teal-2)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi-card{border:1px solid var(--line-dark);border-radius:22px;padding:30px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:22px}
+.testi-card blockquote{font-family:var(--serif);font-size:23px;line-height:1.3;color:#fff}
+.stars{color:var(--sand);letter-spacing:4px;font-size:14px}
+.testi-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--teal-2);color:var(--plan);display:grid;place-items:center;font-weight:800;font-size:14px}
+.testi-name{font-weight:700;color:#fff}
+.testi-meta{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--on-dark-muted);text-transform:uppercase}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr}}
 
-  /* Why us */
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .why-card{background:var(--paper);padding:38px 32px;}
-  .why-num{font-family:'JetBrains Mono',monospace;color:var(--brass);font-size:12px;letter-spacing:0.05em;margin-bottom:18px;display:block;}
-  .why-card h3{font-size:19px;margin-bottom:10px;}
-  .why-card p{font-size:14px;color:var(--text-soft);}
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.blog-card.is-link{cursor:pointer}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(11,42,46,.35)}
+.blog-img{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2)}
+.blog-img img{width:100%;height:100%;object-fit:cover}
+.blog-body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.blog-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep)}
+.blog-body h3{font-size:26px;color:var(--ink)}
+.blog-body p{color:var(--muted);font-size:15px}
+.blog-date{margin-top:auto;padding-top:10px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+@media (max-width:900px){.blog-grid{grid-template-columns:1fr}}
 
-  /* Testimonials */
-  .testi-section{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;z-index:2;}
-  .testi-card{
-    background:rgba(248,246,241,0.05);border:1px solid rgba(248,246,241,0.14);
-    padding:30px;border-radius:2px;
-  }
-  .stars{color:var(--brass-light);font-size:14px;letter-spacing:2px;margin-bottom:16px;}
-  .testi-card p{font-size:14.5px;color:rgba(248,246,241,0.85);margin-bottom:22px;font-style:italic;}
-  .testi-who{display:flex;align-items:center;gap:12px;}
-  .avatar{
-    width:38px;height:38px;border-radius:50%;background:var(--brass);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:14px;
-  }
-  .testi-name{font-size:13.5px;font-weight:600;}
-  .testi-meta{font-size:12px;color:rgba(248,246,241,0.55);font-family:'JetBrains Mono',monospace;}
+/* Preguntas */
+.qa-panel{margin-top:56px;background:var(--ink);color:var(--on-dark);border-radius:28px;padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;position:relative;overflow:hidden}
+.qa-head h3{font-size:clamp(34px,4vw,46px);color:#fff;margin:12px 0 12px}
+.qa-head p{color:var(--on-dark-muted)}
+.qa-head .eyebrow{color:var(--teal-2)}
+.qa-form{display:flex;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:16px;padding:6px}
+.qa-form input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;padding:10px 12px}
+.qa-form input::placeholder{color:var(--on-dark-muted)}
+.qa-form button{border:0;border-radius:11px;background:var(--teal-2);color:var(--plan);font-weight:800;padding:10px 18px;cursor:pointer}
+.qa-note{color:var(--teal-2);font-size:14px;margin-top:10px}
+.qa-list{margin-top:18px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto;padding-right:4px}
+.qa-item{border:1px solid var(--line-dark);border-radius:14px;padding:16px 18px;background:rgba(255,255,255,.03)}
+.qa-q{font-weight:700;color:#fff}
+.qa-a{color:var(--on-dark-muted);margin-top:8px;padding-left:14px;border-left:2px solid var(--teal-2)}
+.qa-status{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-2)}
+.qa-empty{color:var(--on-dark-muted);text-align:center;padding:24px 0}
+@media (max-width:860px){.qa-panel{grid-template-columns:1fr;gap:24px}.qa-form{flex-direction:column}.qa-form button{padding:12px}}
 
-  /* Blog */
-  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:64px;}
-  .blog-card{border:1px solid var(--line);padding:0;border-radius:2px;overflow:hidden;background:var(--paper);transition:box-shadow .3s ease;}
-  .blog-card:hover{box-shadow:0 20px 40px -24px rgba(27,43,34,0.3);}
-  .blog-img{aspect-ratio:16/10;overflow:hidden;}
-  .blog-img img{width:100%;height:100%;object-fit:cover;}
-  .blog-body{padding:24px;}
-  .blog-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brass);text-transform:uppercase;letter-spacing:0.05em;}
-  .blog-body h3{font-size:18px;margin:10px 0 8px;}
-  .blog-body p{font-size:13.5px;color:var(--text-soft);}
-  .blog-date{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-soft);margin-top:16px;display:block;}
+/* Contacto */
+.contacto{background:var(--plan);color:var(--on-dark);position:relative;overflow:hidden}
+.contacto h2{color:#fff}
+.contacto h2 em{color:var(--teal-2)}
+.contacto .eyebrow{color:var(--teal-2)}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contacto p.lead{color:var(--on-dark-muted);margin-top:18px}
+.datos{margin-top:34px;display:grid;gap:0;border-top:1px solid var(--line-dark)}
+.dato{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-dark)}
+.dato span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-muted)}
+.dato b,.dato a{font-weight:600;color:#fff;text-align:right}
+.dato a:hover{color:var(--teal-2)}
+.contact-form{background:var(--paper);color:var(--text);border-radius:26px;padding:clamp(24px,4vw,40px);display:grid;gap:14px}
+.contact-form h3{font-size:32px;color:var(--ink)}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.campo input,.campo textarea{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 14px;outline:0;transition:border-color .2s,box-shadow .2s}
+.campo input:focus,.campo textarea:focus{border-color:var(--teal-deep);box-shadow:0 0 0 3px rgba(15,158,172,.15)}
+.campo textarea{min-height:120px;resize:vertical}
+.fila2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.status-msg-contact{font-size:14px;color:var(--muted);min-height:20px}
+.note-badge{display:none;margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(93,203,211,.12);border:1px solid var(--teal-2);color:#fff}
+@media (max-width:900px){.contacto-grid{grid-template-columns:1fr;gap:40px}.fila2{grid-template-columns:1fr}}
+.pie{border-top:1px solid var(--line-dark);margin-top:clamp(56px,8vw,90px);padding-block:26px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.pie-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--on-dark-muted)}
+.pie-links a:hover{color:#fff}
 
-  /* Q&A dynamic */
-  .qa-panel{
-    background:var(--ink);border-radius:2px;padding:48px;position:relative;overflow:hidden;
-  }
-  .qa-head{max-width:520px;margin-bottom:32px;position:relative;z-index:2;}
-  .qa-head h3{color:var(--paper);font-size:26px;margin-bottom:10px;}
-  .qa-head p{color:rgba(248,246,241,0.65);font-size:14.5px;}
-  .qa-form{
-    display:flex;gap:12px;margin-bottom:36px;position:relative;z-index:2;flex-wrap:wrap;
-  }
-  .qa-form input{
-    flex:1;min-width:220px;background:rgba(248,246,241,0.08);border:1px solid rgba(248,246,241,0.2);
-    padding:15px 18px;color:var(--paper);font-family:'Public Sans',sans-serif;font-size:14px;border-radius:2px;
-  }
-  .qa-form input::placeholder{color:rgba(248,246,241,0.4);}
-  .qa-form button{
-    background:var(--brass);border:none;color:var(--ink);padding:15px 26px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.04em;cursor:pointer;border-radius:2px;
-  }
-  .qa-form button:hover{background:var(--brass-light);}
-  .qa-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2;}
-  .qa-item{
-    background:rgba(248,246,241,0.06);border:1px solid rgba(248,246,241,0.12);
-    padding:18px 20px;border-radius:2px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
-    animation:fadeIn .5s ease;
-  }
-  @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-  .qa-item p{color:rgba(248,246,241,0.9);font-size:14px;}
-  .qa-item .qa-status{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--brass-light);
-    white-space:nowrap;padding-top:2px;
-  }
+/* WhatsApp flotante */
+.wsp-float{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:10px;background:var(--teal-deep);color:#fff;padding:14px 18px 14px 16px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 18px 40px -12px rgba(8,32,36,.55);transition:transform .2s,background .2s}
+.wsp-float:hover{transform:translateY(-3px);background:var(--ink)}
+.wsp-float svg{width:22px;height:22px}
+@media (max-width:640px){.wsp-float span{display:none}.wsp-float{padding:15px}}
 
-  /* Contact / footer */
-  .footer{background:var(--stone);padding:80px 0 0;}
-  .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:64px;}
-  .footer h2{font-size:clamp(26px,3vw,36px);margin-bottom:16px;}
-  .footer p{color:var(--text-soft);font-size:14.5px;max-width:380px;margin-bottom:28px;}
-  .contact-form{display:flex;flex-direction:column;gap:14px;}
-  .contact-form input,.contact-form textarea{
-    border:1px solid var(--line);background:var(--paper);padding:14px 16px;font-family:'Public Sans',sans-serif;
-    font-size:14px;border-radius:2px;color:var(--text);
-  }
-  .contact-form textarea{resize:none;height:100px;}
-  .contact-details{display:flex;flex-direction:column;gap:12px;margin-bottom:22px;}
-  .contact-details div{display:flex;flex-direction:column;gap:2px;}
-  .cd-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--brass);}
-  .cd-value{font-size:15px;color:var(--text);font-weight:500;}
-  .note-badge{
-    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--clay);
-    background:rgba(139,94,60,0.1);padding:6px 12px;border-radius:2px;margin-top:6px;
-  }
-  .footer-bottom{
-    border-top:1px solid var(--line);padding:28px 0;
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
-  }
-  .footer-bottom .logo{font-size:18px;}
-  .footer-links{display:flex;gap:24px;font-size:13px;color:var(--text-soft);}
-  .mockup-flag{
-    background:var(--brass);color:var(--ink);text-align:center;padding:9px;
-    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.03em;
-  }
-
-  /* Botón flotante de WhatsApp */
-  .wsp-float{
-    position:fixed;right:18px;bottom:18px;z-index:150;display:flex;align-items:center;gap:10px;
-    background:var(--brass);color:var(--ink);padding:12px 18px 12px 14px;border-radius:999px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.03em;font-weight:500;
-    box-shadow:0 10px 26px rgba(15,51,56,.35);
-  }
-  .wsp-float svg{width:22px;height:22px;flex:0 0 auto;}
-  .wsp-float:hover{background:var(--brass-light);}
-  @media (max-width:600px){.wsp-float span{display:none;}.wsp-float{padding:14px;right:14px;bottom:14px;}}
-  .modal-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;}
-  .cd-value a{border-bottom:1px solid var(--line);}
-  .cd-value a:hover{border-bottom-color:var(--brass);}
-  .results-note{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-soft);margin:-24px 0 24px;min-height:1em;}
-  .blog-card.is-link{cursor:pointer;}
-  .empty-grid{grid-column:1/-1;color:var(--text-soft);padding:30px 0;text-align:center;}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-
-  @media (max-width:920px){
-    .hero-grid{grid-template-columns:1fr;}
-    .stats-grid{grid-template-columns:repeat(2,1fr);gap:32px;}
-    .prop-grid{grid-template-columns:repeat(2,1fr);}
-    .why-grid{grid-template-columns:1fr;}
-    .testi-grid{grid-template-columns:1fr;}
-    .blog-grid{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:1fr;}
-    .nav-links{display:none;}
-    .menu-toggle{display:flex;}
-  }
-  @media (max-width:600px){
-    .prop-grid{grid-template-columns:1fr;}
-    .wrap{padding:0 20px;}
-    .hero{padding:60px 0 50px;}
-    .qa-panel{padding:28px;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;}
-  }
+/* Modal ficha */
+.modal-overlay{position:fixed;inset:0;z-index:60;background:rgba(8,32,36,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-box{position:relative;background:var(--paper);width:min(1080px,100%);max-height:calc(100svh - 48px);overflow:auto;border-radius:26px;transform:translateY(24px) scale(.98);transition:transform .35s ease}
+.modal-overlay.open .modal-box{transform:none}
+.modal-close{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.modal-gallery{position:relative;aspect-ratio:16/8;background:var(--ink);touch-action:pan-y}
+.modal-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s}
+.modal-gallery img.active{opacity:1}
+.modal-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--ink);font-size:26px;cursor:pointer}
+.m-prev{left:16px}.m-next{right:16px}
+.modal-dots{display:none}
+.modal-count{position:absolute;left:16px;bottom:16px;z-index:3;font-family:var(--mono);font-size:12px;color:#fff;background:rgba(8,32,36,.65);padding:6px 11px;border-radius:999px}
+.modal-content{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;padding:clamp(24px,4vw,44px)}
+.modal-price{font-family:var(--serif);font-size:clamp(34px,4vw,46px);line-height:1.05;color:var(--ink)}
+.modal-title{font-weight:700;font-size:20px;margin-top:8px;color:var(--text)}
+.modal-loc{color:var(--muted);margin-top:4px}
+.modal-desc-label{display:block;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep)}
+.modal-desc{margin-top:10px;color:var(--text);white-space:pre-line;line-height:1.7}
+.ficha{align-self:start;position:sticky;top:20px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px}
+.ficha-titulo{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:8px}
+.modal-table{width:100%;border-collapse:collapse;font-size:14px}
+.modal-table td{padding:10px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+.modal-table td:first-child{color:var(--muted);padding-right:12px}
+.modal-table td:last-child{text-align:right;font-weight:600;color:var(--ink)}
+.modal-table td[colspan]{text-align:left}
+.modal-cta{display:grid;gap:10px;margin-top:18px}
+@media (max-width:860px){.modal-overlay{padding:0;align-items:flex-end}.modal-box{border-radius:22px 22px 0 0;max-height:94svh}.modal-content{grid-template-columns:1fr;gap:24px}.modal-gallery{aspect-ratio:4/3}.ficha{position:static}}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-<header>
-  <nav class="nav">
-    <a href="#top" class="logo">
-      <img src="images/logo_2.png" alt="Betancourt Propiedades" class="logo-mark">
-      BETANCOURT
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Betancourt Propiedades, inicio">
+      <img src="images/logo_2.png" alt="">
+      <span><b>BETANCOURT</b><small>PROPIEDADES</small></span>
     </a>
-    <div class="nav-links">
+    <nav class="nav-links" id="navLinks" aria-label="Secciones">
       <a href="#propiedades">Propiedades</a>
       <a href="#quien-es">Nosotros</a>
       <a href="#servicios">Servicios</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#blog">Blog</a>
       <a href="#contacto">Contacto</a>
-    </div>
-    <a href="#contacto" class="btn btn-primary" style="display:none" id="ctaHeader">Agendar visita</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
-  </nav>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/56920277931" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#ico-wsp"/></svg>WhatsApp
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="contour-bg"></div>
+<main>
+<section class="hero on-dark" id="top">
+  <canvas id="plano" aria-hidden="true"></canvas>
+  <div class="hud hud-coord" aria-hidden="true"><i>33°27′S · 70°40′O</i><br>Región Metropolitana</div>
+  <div class="hud hud-escala" aria-hidden="true"><span></span>0 — 50 m</div>
+  <div class="hud hud-norte" aria-hidden="true">
+    <svg viewBox="0 0 26 26" fill="none" stroke="currentColor"><circle cx="13" cy="13" r="12" stroke-opacity=".5"/><path d="M13 3l4 10h-8z" fill="currentColor" stroke="none"/><path d="M13 23l-4-10h8z" stroke-opacity=".6"/></svg>N
+  </div>
+  <div class="pins" id="pins"></div>
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow">Corredora de propiedades · 15 años de trayectoria</span>
-      <h1>Cada terreno cuenta<br> una <em>historia</em>. <br>Nosotros la escribimos<br> contigo.</h1>
-      <p>Casas, terrenos y arriendos en las mejores ubicaciones, guiados por quince años de experiencia local y más de trescientas familias acompañadas hasta la firma.</p>
+      <h1>Cada terreno cuenta una <em>historia</em>. Nosotros la escribimos contigo.</h1>
+      <p class="hero-lead">Casas, terrenos y arriendos en las mejores ubicaciones, guiados por quince años de experiencia local y más de trescientas familias acompañadas hasta la firma.</p>
+      <form class="buscador" id="searchForm" role="search" aria-label="Buscar propiedades">
+        <label><span>Operación</span>
+          <select id="searchOp">
+            <option value="">Todas</option>
+            <option value="venta">Venta</option>
+            <option value="arriendo">Arriendo</option>
+          </select>
+        </label>
+        <label><span>Tipo</span>
+          <select id="searchType">
+            <option value="">Todos</option>
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+            <option value="terreno">Terreno</option>
+            <option value="parcela">Parcela</option>
+            <option value="comercial">Local comercial</option>
+          </select>
+        </label>
+        <label><span>Comuna o sector</span>
+          <input type="text" id="searchText" placeholder="Ej: Talagante" maxlength="60">
+        </label>
+        <button type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar</button>
+      </form>
       <div class="hero-ctas">
         <a href="#propiedades" class="btn btn-primary">Ver propiedades</a>
-        <a href="#contacto" class="btn btn-ghost">Hablar con un asesor</a>
+        <a href="#contacto" class="btn btn-ghost">Hablar con una asesora</a>
       </div>
-      <form class="search-bar" id="searchForm" role="search">
-        <select id="searchOp" aria-label="Operación">
-          <option value="">Venta o arriendo</option>
-          <option value="venta">Venta</option>
-          <option value="arriendo">Arriendo</option>
-        </select>
-        <select id="searchType" aria-label="Tipo de propiedad">
-          <option value="">Cualquier tipo</option>
-          <option value="casa">Casa</option>
-          <option value="departamento">Departamento</option>
-          <option value="terreno">Terreno</option>
-          <option value="parcela">Parcela</option>
-          <option value="comercial">Local comercial</option>
-        </select>
-        <input type="text" id="searchText" placeholder="Comuna o sector" aria-label="Comuna o sector">
-        <button type="submit">Buscar</button>
-      </form>
     </div>
-    <div class="hero-panel">
+    <figure class="lote">
+      <i class="esquina e1"></i><i class="esquina e2"></i><i class="esquina e3"></i><i class="esquina e4"></i>
       <img src="images/casa-en-arriendo-calle-seis-oriente-1.jpg" alt="Propiedad destacada" id="heroImg">
-      <div class="tag">
-        <span id="heroCaption">Casa en arriendo · Seis Oriente</span>
-      </div>
-    </div>
+      <figcaption><b>Destacada</b><span id="heroCaption">Casa en arriendo · Seis Oriente</span></figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="stats-section">
-  <div class="wrap stats-grid">
-    <div class="reveal"><div class="stat-num">15</div><div class="stat-label">años en el mercado inmobiliario</div></div>
-    <div class="reveal"><div class="stat-num">320+</div><div class="stat-label">propiedades vendidas y arrendadas</div></div>
-    <div class="reveal"><div class="stat-num">98%</div><div class="stat-label">de clientes satisfechos</div></div>
-    <div class="reveal"><div class="stat-num">45</div><div class="stat-label">comunas con cobertura activa</div></div>
+<div class="franja" aria-hidden="true"><div class="franja-track" id="franja"></div></div>
+
+<section aria-label="Trayectoria">
+  <div class="wrap stats">
+    <div class="stat reveal"><div class="stat-num" data-valor="15">15</div><div class="stat-label">años en el mercado inmobiliario</div></div>
+    <div class="stat reveal"><div class="stat-num" data-valor="320" data-sufijo="+">320<sup>+</sup></div><div class="stat-label">propiedades vendidas y arrendadas</div></div>
+    <div class="stat reveal"><div class="stat-num" data-valor="98" data-sufijo="%">98<sup>%</sup></div><div class="stat-label">de clientes satisfechos</div></div>
+    <div class="stat reveal"><div class="stat-num" data-valor="45">45</div><div class="stat-label">comunas con cobertura activa</div></div>
   </div>
 </section>
 
 <section class="section" id="quien-es">
-  <div class="wrap">
-    <div class="about-grid reveal">
-      <div class="about-portrait">
-        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="98" stroke="#14A3AF" stroke-width="1.5"/>
-          <circle cx="100" cy="78" r="30" stroke="#14A3AF" stroke-width="1.5"/>
-          <path d="M100 48c-4 0-8 6-8 14 0 3 6 6 8 6s8-3 8-6c0-8-4-14-8-14Z" stroke="#14A3AF" stroke-width="1.2"/>
-          <path d="M40 168c8-30 34-46 60-46s52 16 60 46" stroke="#14A3AF" stroke-width="1.5"/>
-          <path d="M72 150c8 6 20 10 28 10s20-4 28-10" stroke="#14A3AF" stroke-width="1.2"/>
-        </svg>
-      </div>
-      <div>
-        <span class="eyebrow">Nosotros</span>
-        <h2>¿Quién es Claudia Betancourt?</h2>
-        <p class="about-lead">Contador Auditor y Asesora Inmobiliaria, con más de 15 años de experiencia en el mercado inmobiliario.</p>
-        <p>A lo largo de mi trayectoria me he especializado en la intermediación de compraventas, arriendos y asesoría en inversiones, entregando un servicio profesional, transparente y personalizado.</p>
-        <p>Mi compromiso es acompañar a cada cliente durante todo el proceso, brindando seguridad, confianza y soluciones adaptadas a sus necesidades, para que cada operación se desarrolle de forma eficiente y con total respaldo.</p>
-      </div>
+  <div class="wrap about">
+    <div class="retrato reveal">
+      <svg class="curvas" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <path d="M-20 300 C 60 250, 120 330, 200 280 S 330 210, 420 250"/>
+        <path d="M-20 260 C 70 210, 130 290, 210 240 S 330 170, 420 210"/>
+        <path d="M-20 220 C 80 170, 140 250, 220 200 S 330 130, 420 170"/>
+        <path d="M-20 180 C 90 130, 150 210, 230 160 S 330 90, 420 130"/>
+        <path d="M-20 140 C 100 90, 160 170, 240 120 S 330 50, 420 90"/>
+        <path d="M-20 100 C 110 50, 170 130, 250 80 S 330 10, 420 50"/>
+        <path d="M-20 340 C 50 290, 110 370, 190 320 S 330 250, 420 290"/>
+      </svg>
+      <div class="monograma">C<em>B</em></div>
+      <div class="credencial"><span>Contador Auditor</span><span>Asesora inmobiliaria</span><span>+15 años</span></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Nosotros</span>
+      <h2>¿Quién es <em>Claudia Betancourt</em>?</h2>
+      <p class="about-lead">Contador Auditor y Asesora Inmobiliaria, con más de 15 años de experiencia en el mercado inmobiliario.</p>
+      <p>A lo largo de mi trayectoria me he especializado en la intermediación de compraventas, arriendos y asesoría en inversiones, entregando un servicio profesional, transparente y personalizado.</p>
+      <p>Mi compromiso es acompañar a cada cliente durante todo el proceso, brindando seguridad, confianza y soluciones adaptadas a sus necesidades, para que cada operación se desarrolle de forma eficiente y con total respaldo.</p>
+      <div class="firma">Claudia Betancourt</div>
     </div>
   </div>
 </section>
@@ -528,90 +478,81 @@
     <div class="section-head reveal">
       <div>
         <span class="eyebrow">Portafolio</span>
-        <h2>Propiedades disponibles</h2>
+        <h2>Propiedades <em>disponibles</em></h2>
       </div>
-      <p>Una selección curada de casas, terrenos y arriendos, actualizada por nuestro equipo de terreno cada semana.</p>
+      <p class="lead">Una selección de casas, terrenos y arriendos, actualizada cada semana. Toca una propiedad para ver su ficha completa.</p>
     </div>
-    <div class="filters reveal">
-      <button class="filter-btn active" data-filter="all">Todas</button>
-      <button class="filter-btn" data-filter="casa">Casas</button>
-      <button class="filter-btn" data-filter="departamento">Departamentos</button>
-      <button class="filter-btn" data-filter="terreno">Terrenos</button>
-      <button class="filter-btn" data-filter="parcela">Parcelas</button>
-      <button class="filter-btn" data-filter="venta">Venta</button>
-      <button class="filter-btn" data-filter="comercial">Locales comerciales</button>
-      <button class="filter-btn" data-filter="arriendo">Arriendos</button>
+    <div class="filters reveal" role="group" aria-label="Filtrar propiedades">
+      <button class="filter-btn active" data-filter="all">Todas <i></i></button>
+      <button class="filter-btn" data-filter="venta">Venta <i></i></button>
+      <button class="filter-btn" data-filter="arriendo">Arriendo <i></i></button>
+      <button class="filter-btn" data-filter="casa">Casas <i></i></button>
+      <button class="filter-btn" data-filter="departamento">Departamentos <i></i></button>
+      <button class="filter-btn" data-filter="terreno">Terrenos <i></i></button>
+      <button class="filter-btn" data-filter="parcela">Parcelas <i></i></button>
+      <button class="filter-btn" data-filter="comercial">Comerciales <i></i></button>
     </div>
     <p class="results-note" id="resultsNote" aria-live="polite"></p>
-    <div class="prop-grid" id="propGrid">
-      <!-- cards injected by JS -->
-    </div>
+    <div class="prop-grid" id="propGrid"></div>
   </div>
 </section>
 
-<section class="section" id="servicios" style="background:var(--stone);">
+<section class="section" id="servicios">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
         <span class="eyebrow">Servicios</span>
-        <h2>Un servicio integral, de principio a fin</h2>
+        <h2>Un servicio integral, <em>de principio a fin</em></h2>
       </div>
-      <p>En Betancourt Propiedades acompañamos cada operación con asesoría personalizada, desde el primer contacto hasta el cierre.</p>
+      <p class="lead">En Betancourt Propiedades acompañamos cada operación con asesoría personalizada, desde el primer contacto hasta el cierre.</p>
     </div>
-    <div class="why-grid reveal">
-      <div class="why-card">
-        <span class="why-num">Servicios</span>
+    <div class="servicios reveal">
+      <article class="serv">
+        <span class="serv-num">01 — Servicios</span>
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 20 7l15 12"/><path d="M9 16v17h22V16"/><path d="M17 33v-9h6v9"/></svg>
         <h3>Venta, arriendo y tasación</h3>
         <p>Venta de propiedades, arriendos, tasaciones, gestión de subsidios habitacionales y estudios de títulos.</p>
-      </div>
-      <div class="why-card">
-        <span class="why-num">Asesorías</span>
+      </article>
+      <article class="serv">
+        <span class="serv-num">02 — Asesorías</span>
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h13l6 6v24H11z"/><path d="M24 5v6h6"/><path d="M15 19h11M15 24h11M15 29h7"/></svg>
         <h3>Legal, comercial y financiera</h3>
         <p>Asesoría legal, comercial, financiera y en inversiones inmobiliarias, para decidir con toda la información.</p>
-      </div>
-      <div class="why-card">
-        <span class="why-num">Forma de trabajo</span>
+      </article>
+      <article class="serv">
+        <span class="serv-num">03 — Forma de trabajo</span>
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="20" r="7"/><path d="M22 20h14M31 20v5M35 20v4"/></svg>
         <h3>Acompañamiento permanente</h3>
         <p>Visitas a las propiedades, estrategias de comercialización, difusión en portales y redes, gestión documental y acompañamiento hasta la venta, compra, arriendo o entrega.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <section class="section testi-section" id="testimonios">
-  <div class="contour-bg" style="opacity:.4"></div>
   <div class="wrap">
-    <div class="section-head reveal" style="align-items:flex-start;">
+    <div class="section-head reveal">
       <div>
-        <span class="eyebrow" style="color:var(--brass-light)">Testimonios</span>
-        <h2 style="color:var(--paper)">Lo que dicen quienes ya encontraron su lugar</h2>
+        <span class="eyebrow">Testimonios</span>
+        <h2>Lo que dicen quienes ya <em>encontraron su lugar</em></h2>
       </div>
     </div>
     <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Vendimos un terreno familiar que llevaba años parado. Nos explicaron cada paso y el proceso fue mucho más rápido de lo que esperábamos."</p>
-        <div class="testi-who">
-          <div class="avatar">MP</div>
-          <div><div class="testi-name">Marcela Pinto</div><div class="testi-meta">Venta de terreno · Til Til</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Buscábamos arriendo para nuestra familia y en dos semanas ya estábamos firmando. Muy atentos y transparentes con los costos."</p>
-        <div class="testi-who">
-          <div class="avatar">RF</div>
-          <div><div class="testi-name">Rodrigo Fuentes</div><div class="testi-meta">Arriendo casa · Peñalolén</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Profesionalismo desde la tasación hasta la notaría. Se nota la experiencia de quince años en cómo manejan cada detalle."</p>
-        <div class="testi-who">
-          <div class="avatar">CS</div>
-          <div><div class="testi-name">Camila Soto</div><div class="testi-meta">Compra de casa · Chicureo</div></div>
-        </div>
-      </div>
+      <figure class="testi-card">
+        <div class="stars" aria-label="5 de 5">★★★★★</div>
+        <blockquote>“Vendimos un terreno familiar que llevaba años parado. Nos explicaron cada paso y el proceso fue mucho más rápido de lo que esperábamos.”</blockquote>
+        <figcaption class="testi-who"><div class="avatar">MP</div><div><div class="testi-name">Marcela Pinto</div><div class="testi-meta">Venta de terreno · Til Til</div></div></figcaption>
+      </figure>
+      <figure class="testi-card">
+        <div class="stars" aria-label="5 de 5">★★★★★</div>
+        <blockquote>“Buscábamos arriendo para nuestra familia y en dos semanas ya estábamos firmando. Muy atentos y transparentes con los costos.”</blockquote>
+        <figcaption class="testi-who"><div class="avatar">RF</div><div><div class="testi-name">Rodrigo Fuentes</div><div class="testi-meta">Arriendo casa · Peñalolén</div></div></figcaption>
+      </figure>
+      <figure class="testi-card">
+        <div class="stars" aria-label="5 de 5">★★★★★</div>
+        <blockquote>“Profesionalismo desde la tasación hasta la notaría. Se nota la experiencia de quince años en cómo manejan cada detalle.”</blockquote>
+        <figcaption class="testi-who"><div class="avatar">CS</div><div><div class="testi-name">Camila Soto</div><div class="testi-meta">Compra de casa · Chicureo</div></div></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -620,127 +561,125 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow">Blog & consultas</span>
-        <h2>Recursos para decidir con información</h2>
+        <span class="eyebrow">Blog &amp; consultas</span>
+        <h2>Recursos para decidir <em>con información</em></h2>
       </div>
-      <p>Artículos sobre el proceso de compra, venta y arriendo, además de un espacio para resolver tus dudas directamente.</p>
+      <p class="lead">Artículos sobre el proceso de compra, venta y arriendo, además de un espacio para resolver tus dudas directamente.</p>
     </div>
     <div class="blog-grid reveal" id="blogGrid">
-      <div class="blog-card">
-        <div class="blog-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Documentos y firma de contrato"></div>
-        <div class="blog-body">
-          <span class="blog-tag">Guía</span>
-          <h3>Qué revisar antes de comprar un terreno</h3>
-          <p>Deslindes, factibilidad de agua y normativa: los puntos que no puedes pasar por alto.</p>
-          <span class="blog-date">12 ago 2026 · 6 min de lectura</span>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=700&auto=format&fit=crop" alt="Casa en venta con jardín"></div>
-        <div class="blog-body">
-          <span class="blog-tag">Venta</span>
-          <h3>Cómo se define el precio real de tu casa</h3>
-          <p>Los factores que usamos en Betancourt para tasar por sobre el "precio de barrio".</p>
-          <span class="blog-date">3 ago 2026 · 4 min de lectura</span>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-img"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=700&auto=format&fit=crop" alt="Llaves de arriendo entregadas"></div>
-        <div class="blog-body">
-          <span class="blog-tag">Arriendo</span>
-          <h3>Contratos de arriendo: cláusulas clave</h3>
-          <p>Lo que todo arrendatario y arrendador debería tener por escrito desde el día uno.</p>
-          <span class="blog-date">27 jul 2026 · 5 min de lectura</span>
-        </div>
-      </div>
+      <article class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Documentos y firma de contrato" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-tag">Guía</span><h3>Qué revisar antes de comprar un terreno</h3><p>Deslindes, factibilidad de agua y normativa: los puntos que no puedes pasar por alto.</p><span class="blog-date">6 min de lectura</span></div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=700&auto=format&fit=crop" alt="Casa en venta con jardín" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-tag">Venta</span><h3>Cómo se define el precio real de tu casa</h3><p>Los factores que usamos en Betancourt para tasar por sobre el "precio de barrio".</p><span class="blog-date">4 min de lectura</span></div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=700&auto=format&fit=crop" alt="Llaves de arriendo entregadas" loading="lazy"></div>
+        <div class="blog-body"><span class="blog-tag">Arriendo</span><h3>Contratos de arriendo: cláusulas clave</h3><p>Lo que todo arrendatario y arrendador debería tener por escrito desde el día uno.</p><span class="blog-date">5 min de lectura</span></div>
+      </article>
     </div>
 
     <div class="qa-panel reveal">
-      <div class="contour-bg" style="opacity:.5"></div>
       <div class="qa-head">
-        <h3>Pregúntale a un asesor</h3>
-        <p>Escribe tu consulta sobre compra, venta o arriendo. Nuestro equipo responde en un plazo de 24 a 48 horas hábiles.</p>
+        <span class="eyebrow">Consultas abiertas</span>
+        <h3>Pregúntale a una asesora</h3>
+        <p>Escribe tu consulta sobre compra, venta o arriendo. Respondemos en un plazo de 24 a 48 horas hábiles y publicamos las respuestas aquí.</p>
       </div>
-      <form class="qa-form" id="qaForm">
-        <input type="text" id="qaInput" placeholder="Ej: ¿Qué documentos necesito para vender un terreno heredado?" required maxlength="300" aria-label="Tu pregunta">
-        <button type="submit">Publicar pregunta</button>
-      </form>
-      <div class="qa-list" id="qaList">
-        <div class="empty-msg" style="text-align:center;color:var(--paper);opacity:.6;padding:20px 0;">Cargando preguntas…</div>
+      <div>
+        <form class="qa-form" id="qaForm">
+          <input type="text" id="qaInput" placeholder="Ej: ¿Qué documentos necesito para vender un terreno heredado?" required maxlength="300" aria-label="Tu pregunta">
+          <button type="submit">Enviar pregunta</button>
+        </form>
+        <div class="qa-list" id="qaList"><div class="qa-empty">Cargando preguntas…</div></div>
       </div>
     </div>
   </div>
 </section>
+</main>
 
-<footer class="footer" id="contacto">
+<footer class="section contacto on-dark" id="contacto">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
+    <div class="contacto-grid">
+      <div class="reveal">
         <span class="eyebrow">Conversemos</span>
-        <h2>Empecemos por conocer lo que buscas</h2>
-        <p>Cuéntanos si quieres comprar, vender o arrendar. Claudia Betancourt se pondrá en contacto contigo para coordinar una primera reunión.</p>
-        <div class="contact-details">
-          <div><span class="cd-label">WhatsApp / Teléfono</span><span class="cd-value"><a href="https://wa.me/56920277931" target="_blank" rel="noopener">+56 9 2027 7931</a></span></div>
-          <div><span class="cd-label">Correo electrónico</span><span class="cd-value"><a href="mailto:betanclaudia@gmail.com">betanclaudia@gmail.com</a></span></div>
-          <div><span class="cd-label">Horario de atención</span><span class="cd-value">Todos los días, 09:00–19:00 · con cita previa</span></div>
+        <h2 style="margin-top:14px">Empecemos por conocer <em>lo que buscas</em></h2>
+        <p class="lead">Cuéntanos si quieres comprar, vender o arrendar. Claudia Betancourt se pondrá en contacto contigo para coordinar una primera reunión.</p>
+        <div class="datos">
+          <div class="dato"><span>WhatsApp / Teléfono</span><a href="https://wa.me/56920277931" target="_blank" rel="noopener">+56 9 2027 7931</a></div>
+          <div class="dato"><span>Correo</span><a href="mailto:betanclaudia@gmail.com">betanclaudia@gmail.com</a></div>
+          <div class="dato"><span>Atención</span><b>Todos los días · 09:00–19:00</b></div>
         </div>
-        <div class="note-badge" id="contactNote" style="display:none;">Tu consulta fue enviada. Te contactaremos pronto.</div>
+        <div class="note-badge" id="contactNote">✓ Tu consulta fue enviada. Te contactaremos pronto.</div>
       </div>
-      <form class="contact-form" id="contactForm">
-        <input type="text" id="contactName" placeholder="Nombre completo" required maxlength="100" autocomplete="name" aria-label="Nombre completo">
-        <input type="text" id="contactInfo" placeholder="Teléfono o correo" required maxlength="100" autocomplete="tel" aria-label="Teléfono o correo">
-        <input type="text" id="contactComuna" placeholder="Comuna de interés" maxlength="80" aria-label="Comuna de interés">
-        <textarea id="contactMessage" placeholder="Cuéntanos qué estás buscando..." required maxlength="2000" aria-label="Mensaje"></textarea>
-        <button type="submit" class="btn btn-primary" style="width:fit-content;">Enviar consulta</button>
-        <div class="status-msg-contact" id="contactStatus" style="font-size:.85rem;"></div>
+      <form class="contact-form reveal" id="contactForm">
+        <h3>Envíanos tu consulta</h3>
+        <div class="fila2">
+          <label class="campo"><span>Nombre</span><input type="text" id="contactName" required maxlength="100" autocomplete="name"></label>
+          <label class="campo"><span>Teléfono o correo</span><input type="text" id="contactInfo" required maxlength="100" autocomplete="tel"></label>
+        </div>
+        <label class="campo"><span>Comuna de interés</span><input type="text" id="contactComuna" maxlength="80"></label>
+        <label class="campo"><span>Mensaje</span><textarea id="contactMessage" placeholder="Cuéntanos qué estás buscando…" required maxlength="2000"></textarea></label>
+        <button type="submit" class="btn btn-primary" style="width:fit-content">Enviar consulta</button>
+        <div class="status-msg-contact" id="contactStatus" aria-live="polite"></div>
       </form>
     </div>
-    <div class="footer-bottom">
-      <a href="#top" class="logo"><img src="images/logo_3.png" alt="Betancourt Propiedades" class="logo-mark">BETANCOURT</a>
-      <div class="footer-links">
-        <span>Providencia, Santiago</span>
-        <span>+56 9 2027 7931</span>
-        <span>Todos los días · 09:00–19:00</span>
+    <div class="pie">
+      <a href="#top" class="brand"><img src="images/logo_3.png" alt=""><span><b>BETANCOURT</b><small>PROPIEDADES</small></span></a>
+      <div class="pie-links">
+        <a href="#propiedades">Propiedades</a>
+        <a href="https://wa.me/56920277931" target="_blank" rel="noopener">+56 9 2027 7931</a>
+        <span>© <span id="anio">2026</span> Betancourt Propiedades</span>
       </div>
     </div>
   </div>
 </footer>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ico-wsp" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.23 8.22zm4.52-6.16c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></symbol>
+</svg>
+
 <a class="wsp-float" href="https://wa.me/56920277931?text=Hola%20Claudia%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.23 8.22zm4.52-6.16c-.25-.12-1.46-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#ico-wsp"/></svg>
   <span>Escríbenos por WhatsApp</span>
 </a>
 
-<div class="modal-overlay" id="propModal">
+<div class="modal-overlay" id="propModal" role="dialog" aria-modal="true" aria-labelledby="modalPrice">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" type="button" aria-label="Cerrar">&times;</button>
     <div class="modal-gallery" id="modalGallery"></div>
     <div class="modal-content">
-      <div class="modal-price" id="modalPrice"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-loc" id="modalLoc"></div>
-      <table class="modal-table" id="modalTable"></table>
-      <span class="modal-desc-label" id="modalDescLabel">Descripción</span>
-      <div class="modal-desc" id="modalDesc"></div>
-      <div class="modal-cta">
-        <a class="btn btn-primary" id="modalWsp" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
-        <a class="btn btn-ghost" href="#contacto" id="modalContact">Agendar una visita</a>
+      <div>
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-loc" id="modalLoc"></div>
+        <span class="modal-desc-label" id="modalDescLabel">Descripción</span>
+        <div class="modal-desc" id="modalDesc"></div>
       </div>
+      <aside class="ficha">
+        <div class="ficha-titulo" id="fichaTitulo">Ficha técnica</div>
+        <table class="modal-table" id="modalTable"></table>
+        <div class="modal-cta">
+          <a class="btn btn-primary" id="modalWsp" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="btn btn-ghost" href="#contacto" id="modalContact">Agendar una visita</a>
+        </div>
+      </aside>
     </div>
   </div>
 </div>
 
 <script>
-  // Mobile menu (simple toggle placeholder — expands nav-links)
+  // Menú del celular
+  const nav = document.getElementById('nav');
   const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.querySelector('.nav-links');
   function setMenu(open){
-    navLinks.style.cssText = open ? 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--paper);padding:20px 32px;gap:18px;border-bottom:1px solid var(--line);' : '';
+    nav.classList.toggle('open', open);
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
-  menuToggle.addEventListener('click', () => setMenu(navLinks.style.display !== 'flex'));
-  // Al tocar un enlace del menú en el celular, el menú se cierra.
-  navLinks.addEventListener('click', (e) => { if (e.target.closest('a') && menuToggle.offsetParent !== null) setMenu(false); });
+  menuToggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  document.getElementById('navLinks').addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  document.getElementById('anio').textContent = new Date().getFullYear();
 
   // Datos de contacto en un solo lugar (se usan en el botón de WhatsApp y en las fichas).
   const WHATSAPP = '56920277931';
@@ -845,40 +784,6 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     appId: "1:1067127690740:web:7489099722683e5d9a95a1"
   };
 
-  try {
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    window.firebaseDb = db;
-
-    db.collection('properties').orderBy('createdAt', 'desc').get()
-      .then(snap => {
-        const realProperties = snap.docs.map(doc => doc.data());
-        // Las propiedades del panel se muestran primero; las 4 del código quedan al final.
-        properties = [...realProperties, ...properties];
-        renderProps('all');
-      })
-      .catch(err => {
-        console.warn('No se pudieron cargar propiedades desde Firestore, se muestran solo las del código:', err.message);
-      });
-
-    // Foto principal (hero): si se configuró una desde el panel admin, se usa esa.
-    db.collection('settings').doc('site').get()
-      .then(doc => {
-        if (doc.exists) {
-          const data = doc.data();
-          if (data.heroImage) document.getElementById('heroImg').src = data.heroImage;
-          if (data.heroCaption) document.getElementById('heroCaption').textContent = data.heroCaption;
-        }
-      })
-      .catch(err => console.warn('No se pudo cargar la foto principal personalizada:', err.message));
-
-    // Preguntas públicas (sección "Pregúntale a un asesor").
-    if (typeof loadQuestions === 'function') loadQuestions();
-    setTimeout(() => { if (typeof loadBlog === 'function') loadBlog(); }, 0);
-  } catch (err) {
-    console.warn('Firebase no se pudo inicializar:', err.message);
-  }
-
   const grid = document.getElementById('propGrid');
   const resultsNote = document.getElementById('resultsNote');
   let currentFilter = 'all';
@@ -893,7 +798,7 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
   }
   // Un filtro de tipo también calza con la etiqueta: una propiedad tipo
   // "terreno" con etiqueta "Parcela" aparece en Parcelas, "Local comercial"
-  // en Locales comerciales, etc.
+  // en Comerciales, etc.
   function calzaTipo(p, tipo){
     return p.type === tipo || (p.label || '').toLowerCase().includes(tipo);
   }
@@ -902,13 +807,31 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     if (f === 'venta' || f === 'arriendo') return operacionDe(p) === f;
     return calzaTipo(p, f);
   }
-  function sinTildes(t){ return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+  function sinTildes(t){ return String(t || '').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
   function calzaBusqueda(p, b){
     if (!b) return true;
     if (b.op && operacionDe(p) !== b.op) return false;
     if (b.type && !calzaTipo(p, b.type)) return false;
     if (b.text && !sinTildes((p.loc || '') + ' ' + (p.title || '')).includes(sinTildes(b.text))) return false;
     return true;
+  }
+  function fotosDe(p){ return (p.images && p.images.length) ? p.images : (p.img ? [p.img] : []); }
+  // "Av. Américo Vespucio 0100, Pudahuel, Región Metropolitana" → "Pudahuel"
+  function comunaDe(p){
+    const partes = String(p.loc || '').split(',').map(s => s.trim()).filter(s => s && !/regi[oó]n/i.test(s));
+    return partes.length ? partes[partes.length - 1] : '';
+  }
+
+  const ICO_LOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+  const ICO_CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  const ICO_FLECHA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  function contarFiltros(){
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      const n = properties.filter(p => calzaFiltro(p, btn.dataset.filter)).length;
+      btn.querySelector('i').textContent = n;
+      btn.hidden = n === 0 && btn.dataset.filter !== 'all' && !btn.classList.contains('active');
+    });
   }
 
   function renderProps(filter){
@@ -917,42 +840,89 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     const lista = properties.filter(p => calzaFiltro(p, currentFilter) && calzaBusqueda(p, currentSearch));
     if (currentSearch) {
       resultsNote.innerHTML = lista.length
-        ? `${lista.length} propiedad(es) encontrada(s) · <a href="#propiedades" id="clearSearch" style="color:var(--brass);">Ver todas</a>`
-        : `No encontramos propiedades con esa búsqueda · <a href="#propiedades" id="clearSearch" style="color:var(--brass);">Ver todas</a>`;
+        ? `${lista.length} propiedad(es) encontrada(s) · <a href="#propiedades" id="clearSearch">Ver todas</a>`
+        : `No encontramos propiedades con esa búsqueda · <a href="#propiedades" id="clearSearch">Ver todas</a>`;
     } else {
       resultsNote.textContent = '';
     }
     if (!lista.length) {
-      grid.innerHTML = '<div class="empty-grid">No hay propiedades en esta categoría por ahora. <a href="#contacto" style="color:var(--brass);">Cuéntanos qué buscas</a> y te avisamos.</div>';
+      grid.innerHTML = '<div class="empty-grid">No hay propiedades en esta categoría por ahora. <a href="#contacto">Cuéntanos qué buscas</a> y te avisamos.</div>';
     }
     lista.forEach((p, i) => {
-        const card = document.createElement('div');
-        card.className = 'prop-card';
-        card.style.transitionDelay = (i * 60) + 'ms';
-        const imgs = (p.images && p.images.length) ? p.images : (p.img ? [p.img] : []);
-        const slidesHtml = imgs.map((src, idx) => `<img src="${esc(src)}" class="prop-slide${idx===0?' active':''}" alt="${esc(p.title)} - foto ${idx+1}" loading="lazy">`).join('');
-        const dotsHtml = imgs.length > 1 ? `<div class="prop-dots">${imgs.map((_,idx)=>`<span class="prop-dot${idx===0?' active':''}"></span>`).join('')}</div>` : '';
-        const arrowsHtml = imgs.length > 1 ? `<button class="prop-arrow prop-prev" type="button" aria-label="Foto anterior">‹</button><button class="prop-arrow prop-next" type="button" aria-label="Foto siguiente">›</button>` : '';
-        card.innerHTML = `
-          <div class="prop-img" data-index="0">
-            ${slidesHtml}
-            ${p.label ? `<span class="prop-badge">${esc(p.label)}</span>` : ''}
-            ${p.coord ? `<span class="prop-coord mono">${esc(p.coord)}</span>` : ''}
-            ${arrowsHtml}
-            ${dotsHtml}
+      const idx = properties.indexOf(p);
+      const imgs = fotosDe(p);
+      const op = operacionDe(p);
+      const card = document.createElement('article');
+      card.className = 'prop-card';
+      card.dataset.idx = idx;
+      card.style.transitionDelay = Math.min(i * 70, 420) + 'ms';
+      const slides = imgs.map((src, k) => `<img src="${esc(src)}" class="prop-slide${k===0?' active':''}" alt="${esc(p.title)} - foto ${k+1}" ${k===0?'':'loading="lazy"'}>`).join('');
+      const dots = imgs.length > 1 ? `<div class="prop-dots">${imgs.slice(0, 8).map((_, k) => `<span class="prop-dot${k===0?' active':''}"></span>`).join('')}</div>` : '';
+      const flechas = imgs.length > 1 ? `<button class="prop-arrow prop-prev" type="button" aria-label="Foto anterior">‹</button><button class="prop-arrow prop-next" type="button" aria-label="Foto siguiente">›</button>` : '';
+      card.innerHTML = `
+        <div class="prop-img" data-index="0">
+          ${slides}
+          <div class="chips"><span class="chip op">${op === 'arriendo' ? 'Arriendo' : 'Venta'}</span>${p.label ? `<span class="chip">${esc(p.label)}</span>` : ''}</div>
+          ${imgs.length > 1 ? `<span class="fotos">${ICO_CAM}${imgs.length}</span>` : ''}
+          ${flechas}
+          ${dots}
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">${esc(p.price)}</div>
+          <h3 class="prop-title">${esc(p.title)}</h3>
+          <div class="prop-loc">${ICO_LOC}<span>${esc(p.loc)}</span></div>
+          ${p.specs ? `<div class="prop-specs">${String(p.specs).split(' · ').map(s => `<span>${esc(s)}</span>`).join('')}</div>` : ''}
+          <div class="prop-foot">
+            <button class="prop-more" type="button">Ver ficha completa ${ICO_FLECHA}</button>
+            <a class="prop-wsp" href="${esc(linkWhatsApp(`Hola Claudia, me interesa la propiedad "${p.title}" (${p.loc}).`))}" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#ico-wsp"/></svg>Consultar</a>
           </div>
-          <div class="prop-body">
-            <div class="prop-price">${esc(p.price)}</div>
-            <div class="prop-title">${esc(p.title)}</div>
-            <div class="prop-loc">${esc(p.loc)}</div>
-            ${p.specs ? `<div class="prop-specs">${p.specs.split(' · ').map(s=>`<span>${esc(s)}</span>`).join('')}</div>` : ''}
-            <span class="prop-more" data-idx="${properties.indexOf(p)}">Ver ficha completa</span>
-          </div>`;
-        grid.appendChild(card);
-        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
-      });
+        </div>`;
+      grid.appendChild(card);
+      requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
+    });
+    contarFiltros();
   }
-  renderProps('all');
+
+  // Galería de las tarjetas: flechas, puntos y deslizar con el dedo.
+  function moverSlide(wrap, dir){
+    const slides = wrap.querySelectorAll('.prop-slide');
+    const dots = wrap.querySelectorAll('.prop-dot');
+    const count = slides.length;
+    if (count < 2) return;
+    let idx = parseInt(wrap.dataset.index, 10) || 0;
+    idx = (idx + dir + count) % count;
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[idx].classList.add('active');
+    if (dots.length) dots[Math.min(idx, dots.length - 1)].classList.add('active');
+    wrap.dataset.index = idx;
+  }
+  function deslizable(el, alMover){
+    let x0 = null;
+    el.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive:true});
+    el.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) alMover(e, dx < 0 ? 1 : -1);
+      x0 = null;
+    });
+  }
+
+  let tocoDeslizar = false;
+  deslizable(grid, (e, dir) => {
+    const wrap = e.target.closest('.prop-img');
+    if (wrap) { moverSlide(wrap, dir); tocoDeslizar = true; setTimeout(() => tocoDeslizar = false, 350); }
+  });
+  grid.addEventListener('click', (e) => {
+    const arrow = e.target.closest('.prop-arrow');
+    if (arrow) { moverSlide(arrow.closest('.prop-img'), arrow.classList.contains('prop-next') ? 1 : -1); return; }
+    if (e.target.closest('.prop-wsp')) return;
+    if (tocoDeslizar) return;
+    const card = e.target.closest('.prop-card');
+    if (card && (e.target.closest('.prop-more') || e.target.closest('.prop-img'))) {
+      openPropertyModal(properties[parseInt(card.dataset.idx, 10)]);
+    }
+  });
 
   // Buscador del hero: filtra el portafolio y baja hasta los resultados.
   document.getElementById('searchForm').addEventListener('submit', (e) => {
@@ -974,89 +944,6 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     renderProps('all');
   });
 
-  // Gallery arrows (event delegation)
-  grid.addEventListener('click', (e) => {
-    const arrow = e.target.closest('.prop-arrow');
-    if(arrow){
-      const wrap = arrow.closest('.prop-img');
-      const slides = wrap.querySelectorAll('.prop-slide');
-      const dots = wrap.querySelectorAll('.prop-dot');
-      const count = slides.length;
-      let idx = parseInt(wrap.dataset.index, 10) || 0;
-      idx = arrow.classList.contains('prop-next') ? (idx + 1) % count : (idx - 1 + count) % count;
-      slides.forEach(s => s.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
-      slides[idx].classList.add('active');
-      if(dots[idx]) dots[idx].classList.add('active');
-      wrap.dataset.index = idx;
-      return;
-    }
-    const more = e.target.closest('.prop-more');
-    if(more){
-      openPropertyModal(properties[parseInt(more.dataset.idx, 10)]);
-    }
-  });
-
-  // Property detail modal
-  const propModal = document.getElementById('propModal');
-  const modalGallery = document.getElementById('modalGallery');
-  const modalPrice = document.getElementById('modalPrice');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalLoc = document.getElementById('modalLoc');
-  const modalTable = document.getElementById('modalTable');
-  const modalDesc = document.getElementById('modalDesc');
-  let modalIdx = 0;
-
-  function openPropertyModal(p){
-    const imgs = (p.images && p.images.length) ? p.images : (p.img ? [p.img] : []);
-    modalIdx = 0;
-    modalGallery.innerHTML = imgs.map((src,i)=>`<img src="${esc(src)}" class="${i===0?'active':''}" alt="${esc(p.title)}">`).join('') +
-      (imgs.length > 1 ? `<button class="modal-arrow m-prev" type="button">‹</button><button class="modal-arrow m-next" type="button">›</button><div class="modal-dots">${imgs.map((_,i)=>`<span class="modal-dot${i===0?' active':''}"></span>`).join('')}</div>` : '');
-    modalGallery.style.display = '';
-    modalTable.style.display = '';
-    document.getElementById('modalDescLabel').textContent = 'Descripción';
-    modalPrice.textContent = p.price;
-    modalTitle.textContent = p.title;
-    modalLoc.textContent = p.loc;
-    modalTable.innerHTML = (p.details || []).map(d => {
-      // Soporta ambos formatos: [clave, valor] (propiedades de ejemplo)
-      // y {key, value} (propiedades reales guardadas desde el panel admin).
-      const k = Array.isArray(d) ? d[0] : d.key;
-      const v = Array.isArray(d) ? d[1] : d.value;
-      return `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`;
-    }).join('')
-      || (p.specs || '').split(' · ').filter(Boolean).map(s => `<tr><td colspan="2">${esc(s)}</td></tr>`).join('');
-    modalDesc.textContent = p.description || 'Descripción disponible próximamente. Contáctanos para más información sobre esta propiedad.';
-    document.getElementById('modalWsp').href = linkWhatsApp(`Hola Claudia, me interesa la propiedad "${p.title}" (${p.loc}). ¿Podemos coordinar una visita?`);
-    propModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePropertyModal(){
-    propModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('modalClose').addEventListener('click', closePropertyModal);
-  document.getElementById('modalContact').addEventListener('click', closePropertyModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && propModal.classList.contains('open')) closePropertyModal();
-  });
-  propModal.addEventListener('click', (e) => { if(e.target === propModal) closePropertyModal(); });
-
-  modalGallery.addEventListener('click', (e) => {
-    const arrow = e.target.closest('.modal-arrow');
-    if(!arrow) return;
-    const slides = modalGallery.querySelectorAll('img');
-    const dots = modalGallery.querySelectorAll('.modal-dot');
-    const count = slides.length;
-    modalIdx = arrow.classList.contains('m-next') ? (modalIdx + 1) % count : (modalIdx - 1 + count) % count;
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    slides[modalIdx].classList.add('active');
-    if(dots[modalIdx]) dots[modalIdx].classList.add('active');
-  });
-
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1064,6 +951,83 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
       renderProps(btn.dataset.filter);
     });
   });
+
+  // Ficha de la propiedad (ventana emergente)
+  const propModal = document.getElementById('propModal');
+  const modalGallery = document.getElementById('modalGallery');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalLoc = document.getElementById('modalLoc');
+  const modalTable = document.getElementById('modalTable');
+  const modalDesc = document.getElementById('modalDesc');
+  const fichaTitulo = document.getElementById('fichaTitulo');
+  let modalIdx = 0;
+  let ultimoFoco = null;
+
+  function abrirModal(){
+    ultimoFoco = document.activeElement;
+    propModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    propModal.querySelector('.modal-box').scrollTop = 0;
+    document.getElementById('modalClose').focus({preventScroll:true});
+  }
+  function galeriaModal(imgs, alt){
+    modalIdx = 0;
+    modalGallery.innerHTML = imgs.map((src, i) => `<img src="${esc(src)}" class="${i===0?'active':''}" alt="${esc(alt)} - foto ${i+1}" ${i===0?'':'loading="lazy"'}>`).join('') +
+      (imgs.length > 1 ? `<button class="modal-arrow m-prev" type="button" aria-label="Foto anterior">‹</button><button class="modal-arrow m-next" type="button" aria-label="Foto siguiente">›</button><span class="modal-count" id="modalCount">1 / ${imgs.length}</span>` : '');
+    modalGallery.style.display = imgs.length ? '' : 'none';
+  }
+  function openPropertyModal(p){
+    if (!p) return;
+    galeriaModal(fotosDe(p), p.title);
+    modalTable.style.display = '';
+    fichaTitulo.textContent = 'Ficha técnica';
+    document.getElementById('modalDescLabel').textContent = 'Descripción';
+    modalPrice.textContent = p.price || '';
+    modalTitle.textContent = p.title || '';
+    modalLoc.textContent = p.loc || '';
+    modalTable.innerHTML = `<tr><td>Operación</td><td>${operacionDe(p) === 'arriendo' ? 'Arriendo' : 'Venta'}</td></tr>` + ((p.details || []).map(d => {
+      // Soporta ambos formatos: [clave, valor] (propiedades del código)
+      // y {key, value} (propiedades reales guardadas desde el panel admin).
+      const k = Array.isArray(d) ? d[0] : d.key;
+      const v = Array.isArray(d) ? d[1] : d.value;
+      return `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`;
+    }).join('')
+      || String(p.specs || '').split(' · ').filter(Boolean).map(s => `<tr><td colspan="2">${esc(s)}</td></tr>`).join(''));
+    modalDesc.textContent = p.description || 'Descripción disponible próximamente. Contáctanos para más información sobre esta propiedad.';
+    document.getElementById('modalWsp').href = linkWhatsApp(`Hola Claudia, me interesa la propiedad "${p.title}" (${p.loc}). ¿Podemos coordinar una visita?`);
+    abrirModal();
+  }
+  function closePropertyModal(){
+    propModal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus({preventScroll:true});
+  }
+  function moverModal(dir){
+    const slides = modalGallery.querySelectorAll('img');
+    const count = slides.length;
+    if (count < 2) return;
+    modalIdx = (modalIdx + dir + count) % count;
+    slides.forEach(s => s.classList.remove('active'));
+    slides[modalIdx].classList.add('active');
+    const c = document.getElementById('modalCount');
+    if (c) c.textContent = `${modalIdx + 1} / ${count}`;
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closePropertyModal);
+  document.getElementById('modalContact').addEventListener('click', closePropertyModal);
+  document.addEventListener('keydown', (e) => {
+    if (!propModal.classList.contains('open')) return;
+    if (e.key === 'Escape') closePropertyModal();
+    if (e.key === 'ArrowRight') moverModal(1);
+    if (e.key === 'ArrowLeft') moverModal(-1);
+  });
+  propModal.addEventListener('click', (e) => { if (e.target === propModal) closePropertyModal(); });
+  modalGallery.addEventListener('click', (e) => {
+    const arrow = e.target.closest('.modal-arrow');
+    if (arrow) moverModal(arrow.classList.contains('m-next') ? 1 : -1);
+  });
+  deslizable(modalGallery, (e, dir) => moverModal(dir));
 
   // Blog: las entradas publicadas desde el panel (colección "posts") reemplazan
   // a los 3 artículos de ejemplo. Si todavía no hay ninguna, quedan los de ejemplo.
@@ -1085,7 +1049,7 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
           const resumen = texto.length > 140 ? texto.slice(0, 140).trim() + '…' : texto;
           const minutos = Math.max(1, Math.round(texto.split(/\s+/).length / 200));
           return `
-            <div class="blog-card is-link" data-post="${i}" tabindex="0" role="button" aria-label="Leer: ${esc(p.title)}">
+            <article class="blog-card is-link" data-post="${i}" tabindex="0" role="button" aria-label="Leer: ${esc(p.title)}">
               ${p.image ? `<div class="blog-img"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>` : ''}
               <div class="blog-body">
                 <span class="blog-tag">Artículo</span>
@@ -1093,24 +1057,24 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
                 <p>${esc(resumen)}</p>
                 <span class="blog-date">${esc(fechaPost(p))}${fechaPost(p) ? ' · ' : ''}${minutos} min de lectura</span>
               </div>
-            </div>`;
+            </article>`;
         }).join('');
       })
       .catch(err => console.warn('No se pudieron cargar las entradas del blog:', err.message));
   }
   function openPostModal(p){
-    modalGallery.innerHTML = p.image ? `<img src="${esc(p.image)}" class="active" alt="${esc(p.title)}">` : '';
-    modalGallery.style.display = p.image ? '' : 'none';
+    if (!p) return;
+    galeriaModal(p.image ? [p.image] : [], p.title);
     modalPrice.textContent = p.title || '';
     modalTitle.textContent = fechaPost(p);
     modalLoc.textContent = '';
     modalTable.innerHTML = '';
     modalTable.style.display = 'none';
+    fichaTitulo.textContent = '¿Tienes dudas?';
     document.getElementById('modalDescLabel').textContent = 'Artículo';
     modalDesc.textContent = p.body || '';
     document.getElementById('modalWsp').href = linkWhatsApp(`Hola Claudia, leí el artículo "${p.title}" y tengo una consulta.`);
-    propModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    abrirModal();
   }
   blogGrid.addEventListener('click', (e) => {
     const card = e.target.closest('[data-post]');
@@ -1121,7 +1085,7 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openPostModal(blogPosts[+card.dataset.post]); }
   });
 
-  // Dynamic Q&A — conectado a Firestore
+  // Preguntas públicas — conectado a Firestore
   const qaForm = document.getElementById('qaForm');
   const qaList = document.getElementById('qaList');
   const qaInput = document.getElementById('qaInput');
@@ -1129,21 +1093,17 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
   function renderQuestion(q) {
     const item = document.createElement('div');
     item.className = 'qa-item';
-    if (q.answer) {
-      item.innerHTML = `<div><p><strong>Pregunta:</strong> ${esc(q.question)}</p><p style="margin-top:6px;"><strong>Respuesta:</strong> ${esc(q.answer)}</p></div><span class="qa-status">Respondida ✓</span>`;
-    } else {
-      item.innerHTML = `<p><strong>Pregunta:</strong> ${esc(q.question)}</p><span class="qa-status pending-demo">Pendiente</span>`;
-    }
+    item.innerHTML = `<div class="qa-q">${esc(q.question)}</div>` +
+      (q.answer ? `<div class="qa-a">${esc(q.answer)}</div><span class="qa-status">Respondida ✓</span>` : `<span class="qa-status">Pendiente de respuesta</span>`);
     return item;
   }
-
   function loadQuestions() {
     if (!window.firebaseDb) return;
     window.firebaseDb.collection('questions').where('published', '==', true).limit(50).get()
       .then(snap => {
         qaList.innerHTML = '';
         if (snap.empty) {
-          qaList.innerHTML = '<div style="text-align:center;color:var(--paper);opacity:.6;padding:20px 0;">Todavía no hay preguntas publicadas. ¡Sé el primero!</div>';
+          qaList.innerHTML = '<div class="qa-empty">Todavía no hay preguntas publicadas. ¡Sé el primero!</div>';
           return;
         }
         const docs = snap.docs.map(d => d.data()).sort((a, b) => {
@@ -1158,7 +1118,6 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
         qaList.innerHTML = '';
       });
   }
-
   qaForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const value = qaInput.value.trim();
@@ -1172,7 +1131,7 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
       qaInput.value = '';
-      qaForm.insertAdjacentHTML('afterend', '<p id="qaSentNote" style="color:var(--brass-light);font-size:.85rem;margin-top:8px;">Tu pregunta fue enviada y se publicará una vez que sea revisada.</p>');
+      qaForm.insertAdjacentHTML('afterend', '<p id="qaSentNote" class="qa-note">✓ Tu pregunta fue enviada y se publicará una vez que sea revisada.</p>');
       setTimeout(() => { const n = document.getElementById('qaSentNote'); if (n) n.remove(); }, 6000);
     }).catch(err => {
       alert('No se pudo enviar tu pregunta, intenta nuevamente. (' + err.message + ')');
@@ -1181,7 +1140,7 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     });
   });
 
-  // Contact form — conectado a Firestore
+  // Formulario de contacto — conectado a Firestore
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -1208,17 +1167,219 @@ Base operativa lista para rent a car y flotas: una oportunidad única sin incurr
     });
   });
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
+  /* =========================================================================
+     HERO: plano de loteo animado. Los lotes se dibujan desde la propiedad
+     destacada hacia afuera, una línea de escaneo los recorre y las
+     propiedades publicadas aparecen como pines (al tocarlos se abre la ficha).
+     ========================================================================= */
+  const reducirMov = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const plano = (() => {
+    const hero = document.getElementById('top');
+    const cv = document.getElementById('plano');
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, lotes = [], avenida = null, t0 = performance.now(), visible = true, activo = false;
+
+    function azar(semilla){ return () => (semilla = (semilla * 16807) % 2147483647, (semilla - 1) / 2147483646); }
+    function achicar(poly, k){
+      const cx = poly.reduce((s, p) => s + p.x, 0) / poly.length;
+      const cy = poly.reduce((s, p) => s + p.y, 0) / poly.length;
+      return {poly: poly.map(p => ({x: cx + (p.x - cx) * k, y: cy + (p.y - cy) * k})), cx, cy};
+    }
+    function generar(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = hero.clientWidth; H = hero.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const r = azar(20260926);
+      const paso = W < 700 ? 74 : 104;
+      const cols = Math.ceil(W / paso) + 2, filas = Math.ceil(H / paso) + 2;
+      const pts = [];
+      for (let i = 0; i < filas; i++) {
+        pts.push([]);
+        for (let j = 0; j < cols; j++) pts[i].push({x: (j - 1) * paso + (r() - .5) * paso * .38, y: (i - 1) * paso + (r() - .5) * paso * .38});
+      }
+      const fx = W * (W < 980 ? .5 : .74), fy = H * .45;
+      lotes = [];
+      for (let i = 0; i < filas - 1; i++) for (let j = 0; j < cols - 1; j++) {
+        const a = pts[i][j], b = pts[i][j + 1], c = pts[i + 1][j + 1], d = pts[i + 1][j];
+        let partes;
+        if (r() < .45) {
+          const m1 = {x: (a.x + b.x) / 2, y: (a.y + b.y) / 2}, m2 = {x: (d.x + c.x) / 2, y: (d.y + c.y) / 2};
+          partes = [[a, m1, m2, d], [m1, b, c, m2]];
+        } else if (r() < .3) {
+          const m1 = {x: (a.x + d.x) / 2, y: (a.y + d.y) / 2}, m2 = {x: (b.x + c.x) / 2, y: (b.y + c.y) / 2};
+          partes = [[a, b, m2, m1], [m1, m2, c, d]];
+        } else partes = [[a, b, c, d]];
+        partes.forEach(poly => {
+          const l = achicar(poly, .86);
+          l.retraso = Math.hypot(l.cx - fx, l.cy - fy) / Math.max(W, H) * 2.2 + r() * .25;
+          l.brillo = 0; l.pin = false;
+          lotes.push(l);
+        });
+      }
+      avenida = {x0: -40, y0: H * .82, cx: W * .45, cy: H * .52, x1: W + 40, y1: H * .18};
+      t0 = performance.now() - (activo ? 3000 : 0);
+      activo = true;
+    }
+    function trazar(poly){
+      ctx.beginPath();
+      poly.forEach((p, k) => k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+      ctx.closePath();
+    }
+    function dibujar(ahora){
+      const t = reducirMov ? 99 : (ahora - t0) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      const ciclo = 9, sx = ((t % ciclo) / ciclo) * (W + 400) - 200;
+      // avenida principal
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(93,203,211,.07)'; ctx.lineWidth = 26;
+      ctx.beginPath(); ctx.moveTo(avenida.x0, avenida.y0); ctx.quadraticCurveTo(avenida.cx, avenida.cy, avenida.x1, avenida.y1); ctx.stroke();
+      ctx.setLineDash([10, 12]); ctx.strokeStyle = 'rgba(93,203,211,.22)'; ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+      for (const l of lotes) {
+        const a = Math.min(1, Math.max(0, (t - l.retraso) / .7));
+        if (a <= 0) continue;
+        const cerca = reducirMov ? 0 : Math.max(0, 1 - Math.abs(l.cx - sx) / 150);
+        trazar(l.poly);
+        if (l.pin) {
+          ctx.fillStyle = `rgba(93,203,211,${(.14 + .06 * Math.sin(t * 2.4)) * a})`;
+          ctx.fill();
+          ctx.strokeStyle = `rgba(93,203,211,${.9 * a})`; ctx.lineWidth = 1.4;
+        } else {
+          if (cerca > 0) { ctx.fillStyle = `rgba(93,203,211,${.06 * cerca * a})`; ctx.fill(); }
+          ctx.strokeStyle = `rgba(93,203,211,${(.14 + .4 * cerca) * a})`; ctx.lineWidth = 1;
+        }
+        ctx.stroke();
+      }
+      if (!reducirMov) {
+        const g = ctx.createLinearGradient(sx - 120, 0, sx, 0);
+        g.addColorStop(0, 'rgba(93,203,211,0)'); g.addColorStop(1, 'rgba(93,203,211,.10)');
+        ctx.fillStyle = g; ctx.fillRect(sx - 120, 0, 120, H);
+        ctx.fillStyle = 'rgba(93,203,211,.45)'; ctx.fillRect(sx, 0, 1, H);
+      }
+      if (!reducirMov && visible) requestAnimationFrame(dibujar);
+    }
+    new IntersectionObserver(e => {
+      const antes = visible; visible = e[0].isIntersecting;
+      if (visible && !antes && !reducirMov) requestAnimationFrame(dibujar);
+    }).observe(hero);
+    let espera;
+    window.addEventListener('resize', () => { clearTimeout(espera); espera = setTimeout(() => { generar(); ubicarPins(); if (reducirMov) dibujar(0); }, 200); });
+    generar();
+    requestAnimationFrame(dibujar);
+    return { lotes: () => lotes, redibujar: () => { if (reducirMov) dibujar(0); }, ancho: () => W, alto: () => H };
+  })();
+
+  // Pines de las propiedades sobre el plano (solo en pantallas anchas, donde hay espacio libre).
+  function ubicarPins(){
+    const cont = document.getElementById('pins');
+    cont.innerHTML = '';
+    plano.lotes().forEach(l => l.pin = false);
+    if (window.innerWidth < 980 || !properties.length) { plano.redibujar(); return; }
+    const hero = document.getElementById('top').getBoundingClientRect();
+    const evitar = [document.querySelector('.hero-copy'), document.querySelector('.lote'), document.querySelector('.hud-coord')].map(el => {
+      const r = el.getBoundingClientRect();
+      return {x0: r.left - hero.left - 40, y0: r.top - hero.top - 40, x1: r.right - hero.left + 40, y1: r.bottom - hero.top + 40};
+    });
+    const W = plano.ancho(), H = plano.alto();
+    const libres = plano.lotes().filter(l => l.cx > 60 && l.cx < W - 60 && l.cy > 90 && l.cy < H - 90 &&
+      !evitar.some(z => l.cx > z.x0 - 170 && l.cx < z.x1 && l.cy > z.y0 && l.cy < z.y1));
+    libres.sort((a, b) => (a.cx * 7.1 + a.cy * 3.3) % 11 - (b.cx * 7.1 + b.cy * 3.3) % 11);
+    const elegidos = [];
+    for (const l of libres) {
+      if (elegidos.length >= Math.min(3, properties.length)) break;
+      if (elegidos.every(o => Math.hypot(o.cx - l.cx, o.cy - l.cy) > 190)) elegidos.push(l);
+    }
+    elegidos.forEach((l, k) => {
+      const p = properties[k];
+      l.pin = true;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pin' + (l.cx > W - 230 ? ' izq' : '');
+      b.style.left = l.cx + 'px'; b.style.top = l.cy + 'px';
+      b.style.animationDelay = (1.2 + k * .35) + 's';
+      const precio = String(p.price || '').split('(')[0].trim();
+      b.innerHTML = `<span class="pin-dot"></span><span class="pin-tag"><b>${esc(comunaDe(p) || p.title)}</b><small>${esc(precio.length > 26 ? precio.slice(0, 25) + '…' : precio)}</small></span>`;
+      b.setAttribute('aria-label', 'Ver ' + (p.title || 'propiedad'));
+      b.addEventListener('click', () => openPropertyModal(p));
+      cont.appendChild(b);
+    });
+    plano.redibujar();
+  }
+
+  // Franja con las comunas donde hay propiedades publicadas.
+  function actualizarFranja(){
+    const comunas = [...new Set(properties.map(comunaDe).filter(Boolean))];
+    const items = [...comunas, 'Venta', 'Arriendo', 'Tasaciones', 'Asesoría legal', 'Estudio de títulos', 'Subsidios habitacionales'];
+    const html = items.map(t => `<span>${esc(t)}</span>`).join('');
+    document.getElementById('franja').innerHTML = html + html;
+  }
+
+  // Todo lo que depende de la lista de propiedades.
+  function actualizarTodo(){
+    renderProps();
+    ubicarPins();
+    actualizarFranja();
+  }
+  actualizarTodo();
+
+  // Conexión con Firebase: propiedades publicadas desde el panel, foto
+  // principal, preguntas y blog. Si no hay conexión, quedan las del código.
+  try {
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    window.firebaseDb = db;
+
+    db.collection('properties').orderBy('createdAt', 'desc').get()
+      .then(snap => {
+        const realProperties = snap.docs.map(doc => doc.data());
+        // Las propiedades del panel se muestran primero; las 4 del código quedan al final.
+        properties = [...realProperties, ...properties];
+        actualizarTodo();
+      })
+      .catch(err => console.warn('No se pudieron cargar propiedades desde Firestore, se muestran solo las del código:', err.message));
+
+    // Foto principal (hero): si se configuró una desde el panel admin, se usa esa.
+    db.collection('settings').doc('site').get()
+      .then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          if (data.heroImage) document.getElementById('heroImg').src = data.heroImage;
+          if (data.heroCaption) document.getElementById('heroCaption').textContent = data.heroCaption;
+        }
+      })
+      .catch(err => console.warn('No se pudo cargar la foto principal personalizada:', err.message));
+
+    loadQuestions();
+    loadBlog();
+  } catch (err) {
+    console.warn('Firebase no se pudo inicializar:', err.message);
+    qaList.innerHTML = '';
+  }
+
+  // Aparición al hacer scroll + conteo de las cifras.
+  function contar(el){
+    const fin = +el.dataset.valor, suf = el.dataset.sufijo || '';
+    if (!fin || reducirMov) return;
+    const t0 = performance.now(), dur = 1400;
+    (function paso(ahora){
+      const k = Math.min(1, (ahora - t0) / dur), v = Math.round(fin * (1 - Math.pow(1 - k, 3)));
+      el.innerHTML = v + (suf ? `<sup>${suf}</sup>` : '');
+      if (k < 1) requestAnimationFrame(paso);
+    })(t0);
+  }
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      const n = entry.target.querySelector('.stat-num');
+      if (n) contar(n);
+      io.unobserve(entry.target);
     });
-  }, {threshold:0.15});
-  revealEls.forEach(el => io.observe(el));
+  }, {threshold: .15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
 </body>
