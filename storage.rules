@@ -5,7 +5,7 @@ service firebase.storage {
     // Mismas cuentas de administración que en Firestore.
     function esAdmin() {
       return request.auth != null
-          && request.auth.token.email in ['betanclaudia@gmail.com'];
+          && request.auth.token.email in ['mpqueroz@gmail.com'];
     }
 
     // Subir o reemplazar: solo imágenes de hasta 10 MB.
